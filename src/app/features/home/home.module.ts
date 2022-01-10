@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { CoreModule } from 'src/app/core/core.module';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CoreModule } from 'src/app/core/core.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
+    NgbNavModule,
     CoreModule
   ]
 })

@@ -30,10 +30,12 @@ export class HeaderComponent implements OnInit {
   public sidebarToggleClicked() {
     const headerTag = document.getElementById('navbarSupportedContent');
     const sidebarToggleTag = document.getElementById('sidebarToggle');
+    const body = document.getElementById('body');
 
     if (!headerTag?.classList.contains('show')) {
       headerTag?.classList.add("show");
       sidebarToggleTag?.classList.add("open");
+      body?.classList.add("open");
     } else {
       headerTag?.classList.remove("show");
       sidebarToggleTag?.classList.remove("open");

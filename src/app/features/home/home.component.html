@@ -1,1 +1,133 @@
-<p>Home</p>
+<div class="main-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <ul ngbNav #nav="ngbNav" class="nav-tabs comman-nav-tabs filter-tab">
+                    <li [ngbNavItem]="1">
+                      <a ngbNavLink>הזמנות</a>
+                      <ng-template ngbNavContent>
+                        <div class="col-12 property-booking-slider">
+                            <div class="">
+                                
+                            </div>
+                        </div>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                      <a ngbNavLink>אספקות</a>
+                      <ng-template ngbNavContent>
+                        <p>assasa</p>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3">
+                      <a ngbNavLink>חשבוניות</a>
+                      <ng-template ngbNavContent>
+                        <p>assasa</p>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="4">
+                      <a ngbNavLink>תשלומים</a>
+                      <ng-template ngbNavContent>
+                        <p>assasa</p>
+                      </ng-template>
+                    </li>
+                  </ul>
+                  <div class="filter">
+                      <div class="row">
+                          <div class="col-md-8">
+                            <div class="search-wrap">
+                                <input type="text" placeholder="חיפוש לפי מספר הזמנה"/>
+                                <button><img src="assets/images/search-icon.svg" alt=""/></button>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="filter-icon text-left" [ngClass]="{ 'show' : isSearchFilter }" (click)="isSearchFilter = !isSearchFilter">
+                               <span>סינון</span>
+                               <img [src]="!isSearchFilter ? 'assets/images/filter-icon.svg' : 'assets/images/close-icon.svg'" alt=""/>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row" id="filter-option" [ngClass]="{ 'filter-open' : isSearchFilter }">
+                          <div class="col-md-12">
+                            <div class="filter-form">
+                                <div class="row align-items-end">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>מיון לפי:</label>
+                                            <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
+                                                <span class="toggle-dropdown" (click)="isDropdownOpen = !isDropdownOpen">מס. הזמנה</span>
+                                                <ul class="dropdown-wrap">
+                                                    <li>כל ההזמנות</li>
+                                                    <li>סופקה</li>
+                                                    <li>טרם סופקה</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="asc-desc-order">
+                                                 <button class="active"><span>סדר עולה</span> <img src="assets/images/up-arrow.svg" alt=""/></button>
+                                                 <button><span>סדר יורד</span> <img src="assets/images/down-arrow.svg" alt=""/></button>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>סינון לפי סטאטוס הזמנה:</label>
+                                            <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
+                                                <span class="toggle-dropdown" (click)="isDropdownOpen = !isDropdownOpen">סופקה</span>
+                                                <ul class="dropdown-wrap">
+                                                    <li>כל ההזמנות</li>
+                                                    <li>סופקה</li>
+                                                    <li>טרם סופקה</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-end">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>סינון לפי תאריך הזמנה:</label>
+                                            <div class="field-container">
+                                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                                    placeholder="דוא״ל">
+                                                <label class="field-placeholder" for="inputName">דוא״ל</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <div class="field-container">
+                                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                                    placeholder="דוא״ל">
+                                                <label class="field-placeholder" for="inputName">דוא״ל</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-footer">
+                                    <button class="btn btn-red"> נקה הכל</button>
+                                    <button class="btn btn-primary"> בחר</button>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="search-result">
+                      <div class="alert">
+                          <img src="assets/images/info-icon.svg" alt=""/>
+                         <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                      </div>
+                      <h6>תוצאות חיפוש</h6>
+                      <p><span>סה״כ סכומי הזמנות:</span>739,508.70</p>
+                  </div>
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>

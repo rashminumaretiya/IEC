@@ -6,6 +6,9 @@
 
 body {
   font-family: "Assistant", sans-serif;
+  color: #27303C;
+  background-image: url('assets/images/bg-image.png');
+  background-size: cover;
 }
 
 body[dir="rtl"] * {
@@ -13,6 +16,15 @@ body[dir="rtl"] * {
 }
 ul {
   padding: 0;
+}
+.main-content {
+    padding: 90px 0;
+}
+hr {
+    border-color: #E6EBF7;
+}
+label {
+    font-weight: 700;
 }
 .btn-primary {
   background: radial-gradient(
@@ -29,11 +41,16 @@ ul {
   color: #000;
   border: none;
   line-height: normal;
-  margin: 8px 0;
   @media screen and (max-width: 575px) {
     padding: 10px 30px;
     font-size: 16px;
   }
+}
+.btn-red {
+    background-color: transparent;
+    color: #C94D08;
+    font-weight: 700;
+    padding: 16px 45px;
 }
 .input-group {
   margin: 15px 0;
@@ -47,11 +64,89 @@ ul {
   }
 }
 
+.custom-dropdown {
+    position: relative;
+    .toggle-dropdown {
+        background: #FFFFFF;
+        border: 1px solid rgba(36, 76, 168, 0.34);
+        box-sizing: border-box;
+        border-radius: 10px;
+        display: block;
+        padding: 14px 16px;
+        cursor: pointer;
+        position: relative;
+        &::after {
+            content: "\f282";
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            left: 12px;
+            top: 15px;
+            color: #244CA8;
+        }
+    }
+    .dropdown-wrap {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        right: 0;
+        background-color: #fff;
+        border-radius: 0 0 10px 10px;
+        border-left: 1px solid #244CA8;
+        border-right: 1px solid #244CA8;
+        border-bottom: 1px solid #244CA8;
+        display: none;
+        li {
+            list-style: none;
+            padding: 10px;
+            cursor: pointer;
+            &:not(:last-child) {
+                border-bottom: 1px solid rgba(36, 76, 168, 0.34);
+            }
+        }
+    }
+    &.dropdown-open {
+        .toggle-dropdown {
+            border-bottom-left-radius: 0;
+            border-color: #244CA8;
+            border-bottom-right-radius: 0;
+            &::after {
+                -moz-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+        .dropdown-wrap {
+            display: block;
+        } 
+    }
+}
+.comman-nav-tabs {
+    &.nav-tabs {
+        border: 0;
+        .nav-item {
+            .nav-link {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+                border-bottom: 3px solid transparent;
+                color: #27303C;
+                &.active {
+                    border-color: #C94D08;
+                    color: #C94D08;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
 // Custom input text field
 
 .field-container {
   position: relative;
-  border: 1px solid #bcbaba;
+  background-color: #fff;
+  border: 1px solid rgba(36, 76, 168, 0.34);
   max-width: 100%;
   padding-left: 10px;
   border-radius: 10px;
@@ -67,21 +162,11 @@ ul {
   font-size: 18px;
   color: #adadad;
   right: 20px;
+  font-weight: normal;
 }
 
-input.field-input  {
-  color: #000;
-  border: none;
-  padding: 5px;
-  margin-top: 20px;
-  font-size: 16px;
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  bottom: 0px;
-}
 input.field-input:-webkit-autofill {
-  -webkit-text-fill-color: #000000;
+  -webkit-text-fill-color: #030303;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
@@ -101,13 +186,26 @@ input.field-input:not(:placeholder-shown) ~ label {
   top: calc(30% - 0.5rem);
   transform: translate(5px, 0%);
 }
-input.field-input::-webkit-input-placeholder {
-  color: transparent;
-}
-input.field-input::-moz-placeholder {
-  color: transparent;
-}
-input.field-input:-ms-input-placeholder {
-  color: transparent;
+input {
+    &.field-input {
+        color: #000;
+        border: none;
+        padding: 5px;
+        margin-top: 20px;
+        font-size: 16px;
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        bottom: 0px;
+        &::-webkit-input-placeholder {
+            color: transparent;
+        }
+        &::-moz-placeholder {
+            color: transparent;
+        }
+        &:-ms-input-placeholder {
+            color: transparent;
+        }
+    }
 }
 
