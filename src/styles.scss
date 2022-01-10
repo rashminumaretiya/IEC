@@ -1,16 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 body {
-    font-family: 'Assistant', sans-serif;
+  font-family: "Assistant", sans-serif;
 }
 
 body[dir="rtl"] * {
-    text-align: right;
+  text-align: right;
 }
 ul {
-    padding: 0;
+  padding: 0;
+}
+.btn-primary {
+  background: radial-gradient(
+    280% 280% at 50.27% -99%,
+    #ffc264 0.03%,
+    #f47216 100%
+  );
+  box-shadow: 0px 4px 20px rgba(177, 86, 21, 0.25);
+  border-radius: 40px;
+  align-items: center;
+  padding: 16px 45px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  border: none;
+  line-height: normal;
+  margin: 8px 0;
+  @media screen and (max-width: 575px) {
+  padding: 10px 30px;
+  font-size: 16px;
+
+  }
+
+}
+.input-group {
+  margin: 15px 0;
+  @media screen and (max-width: 575px) {
+    margin: 8px 0;
+  }
+  .form-control {
+    padding: 9px 16px;
+    height: calc(2.5em + 0.75rem + 2px);
+    border-radius: 10px;
+  }
+}
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  content: "✔";
+  border: 0.1em solid #f47216;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding-right: 1px;
+  padding-bottom: 2px;
+  margin-left: 8px;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+}
+
+input[type="checkbox"] + label:active:before {
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: #f47216;
+  border-color: #f47216;
+  color: #fff;
+}
+
+input[type="checkbox"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+input[type="checkbox"]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
 }

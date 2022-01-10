@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants';
@@ -9,8 +10,12 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
     path: '**',
-    redirectTo : ROUTES.AUTH.SIGNUP
+    redirectTo: ROUTES.AUTH.SIGNUP,
   },
 ];
 

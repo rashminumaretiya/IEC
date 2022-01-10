@@ -1,15 +1,9 @@
-.signup {
+.login {
   background-color: #fff;
   border-radius: 8px;
   padding: 70px 80px;
   box-shadow: 0px 0px 7px 2px rgb(212 209 227 / 30%);
   margin-top: 50px;
-  margin-bottom: 50px;
-  @media screen and (max-width: 575px) {
-  margin-top: 20px;
-  margin-bottom: 20px;
-    padding: 20px;
-  }
   .heading {
     .title {
       color: #0d204c;
@@ -26,10 +20,7 @@
       }
     }
   }
-  .information {
-    margin: 30px 0px 60px;
-     @media screen and (max-width: 575px) {
-     margin: 30px 0px 30px;
-  }
+  .information{
+      margin: 30px 0px 60px;
   }
 }
