@@ -31,11 +31,9 @@ ul {
   line-height: normal;
   margin: 8px 0;
   @media screen and (max-width: 575px) {
-  padding: 10px 30px;
-  font-size: 16px;
-
+    padding: 10px 30px;
+    font-size: 16px;
   }
-
 }
 .input-group {
   margin: 15px 0;
@@ -48,49 +46,68 @@ ul {
     border-radius: 10px;
   }
 }
-input[type="checkbox"] + label {
+
+// Custom input text field
+
+.field-container {
+  position: relative;
+  border: 1px solid #bcbaba;
+  max-width: 100%;
+  padding-left: 10px;
+  border-radius: 10px;
+  padding-right: 10px;
+}
+
+.field-placeholder {
+  position: absolute;
+  top: 50%;
+  transform: translate(5px, -50%);
+  pointer-events: none;
+  transition: all 0.14s ease-in-out;
+  font-size: 18px;
+  color: #adadad;
+  right: 20px;
+}
+
+input.field-input  {
+  color: #000;
+  border: none;
+  padding: 5px;
+  margin-top: 20px;
+  font-size: 16px;
   display: block;
-  margin: 0.2em;
-  cursor: pointer;
-  padding: 0.2em;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0px;
+}
+input.field-input:-webkit-autofill {
+  -webkit-text-fill-color: #000000;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
-input[type="checkbox"] {
-  display: none;
+input.field-input:focus {
+  outline: none;
 }
-
-input[type="checkbox"] + label:before {
-  content: "✔";
-  border: 0.1em solid #f47216;
-  border-radius: 0.2em;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  padding-right: 1px;
-  padding-bottom: 2px;
-  margin-left: 8px;
-  vertical-align: bottom;
+input.field-input.c-fix,
+input.field-input:focus,
+input.field-input:not(:placeholder-shown) {
+  border-color: transparent;
+}
+input.field-input.c-fix ~ label,
+input.field-input:focus ~ label,
+input.field-input:not(:placeholder-shown) ~ label {
+  color: #646669;
+  font-size: 11px;
+  top: calc(30% - 0.5rem);
+  transform: translate(5px, 0%);
+}
+input.field-input::-webkit-input-placeholder {
   color: transparent;
-  transition: 0.2s;
+}
+input.field-input::-moz-placeholder {
+  color: transparent;
+}
+input.field-input:-ms-input-placeholder {
+  color: transparent;
 }
 
-input[type="checkbox"] + label:active:before {
-  transform: scale(0);
-}
-
-input[type="checkbox"]:checked + label:before {
-  background-color: #f47216;
-  border-color: #f47216;
-  color: #fff;
-}
-
-input[type="checkbox"]:disabled + label:before {
-  transform: scale(1);
-  border-color: #aaa;
-}
-
-input[type="checkbox"]:checked:disabled + label:before {
-  transform: scale(1);
-  background-color: #bfb;
-  border-color: #bfb;
-}

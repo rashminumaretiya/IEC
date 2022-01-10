@@ -24,3 +24,23 @@
       margin: 30px 0px 60px;
   }
 }
+.forgot-p{
+    color: #0D204C;
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: underline;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+}
+.input-group {
+  margin: 30px 0 0;
+  @media screen and (max-width: 575px) {
+    margin: 15px 0 0;
+  }
+  .form-control {
+    padding: 9px 16px;
+    height: calc(2.5em + 0.75rem + 2px);
+    border-radius: 10px;
+  }
+}
