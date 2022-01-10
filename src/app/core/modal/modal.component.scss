@@ -1,0 +1,38 @@
+::ng-deep .modal {
+  .modal-dialog {
+    .modal-content {
+      border-radius: 20px;
+      border: 0;
+      box-shadow: 0px 0px 20px #00000080;
+      .modal-header {
+        border: 0;
+        padding: 0;
+        .close {
+          margin-left: auto;
+          border: 0;
+          border-radius: 100%;
+          width: 25px;
+          font-size: 40px;
+          padding: 0;
+          line-height: normal;
+          position: absolute;
+          left: 16px;
+          top: 22px;
+          z-index: 9;
+          &:hover {
+            border: none;
+          }
+          &:focus {
+            border: none;
+          }
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .modal-md {
+    max-width: 600px;
+  }
+}

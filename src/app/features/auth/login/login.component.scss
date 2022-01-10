@@ -20,19 +20,29 @@
       }
     }
   }
-  .information{
-      margin: 30px 0px 60px;
+  .information {
+    margin: 30px 0px 60px;
   }
 }
-.forgot-p{
-    color: #0D204C;
-    font-size: 16px;
-    line-height: 18px;
-    text-decoration: underline;
-    font-weight: 600;
-    margin: 10px 0;
-    cursor: pointer;
+.forgot-p {
+  color: #0d204c;
+  font-size: 16px;
+  line-height: 18px;
+  text-decoration: underline;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
 }
+.modal-title-header {
+  background: linear-gradient(162.51deg, #7ca3f7 -76.98%, #244ca8 181.51%);
+  border-radius: 20px 20px 0 0;
+  padding: 20px 0;
+  color: #fff;
+}
+.property-modal {
+  max-width: 500px;
+}
+
 .input-group {
   margin: 30px 0 0;
   @media screen and (max-width: 575px) {

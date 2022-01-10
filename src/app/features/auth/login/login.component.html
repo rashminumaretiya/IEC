@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-left forgot-p">
+                    <p class="text-left forgot-p" (click)="openPopup()">
                         שכחתי סיסמא
                     </p>
                 </div>
@@ -40,3 +40,9 @@
         </div>
     </div>
 </div>
+<ng-template #propertyDetailsModal class="demo">
+    <h4 class="modal-title-header text-center" id="modal-basic-title">Profile update</h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+       <p>Welcome</p>
+    </app-modal>
+</ng-template>
