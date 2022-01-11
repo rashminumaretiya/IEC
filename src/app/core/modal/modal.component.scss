@@ -19,15 +19,31 @@
           left: 16px;
           top: 22px;
           z-index: 9;
-          &:hover {
-            border: none;
+          color: #ffffff;
+          opacity: 1;
+
+          &:focus-visible {
+            outline: none;
           }
-          &:focus {
-            border: none;
+          i {
+            font-size: 22px;
+            color: #ffffff;
+            @media screen and (max-width: 575px) {
+            }
+            font-size: 20px;
           }
-          span {
-            color: #fff;
-          }
+        }
+      }
+      .modal-body {
+        padding: 62px;
+        border-radius: 0 0 20px 20px;
+        @media screen and (max-width: 575px) {
+          padding: 62px 15px;
+        }
+        @media screen and (min-width: 576px) and (max-width: 1920px) {
+          background-image: url("../../../assets/images/bg-image.png");
+          background-size: cover;
+          background-repeat: no-repeat;
         }
       }
     }

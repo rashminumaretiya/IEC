@@ -1,7 +1,7 @@
 <div class="container">
     <div class="login">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="heading">
                     <h4 class="title text-center ">
                         התחברות למערכת
@@ -39,10 +39,117 @@
             </div>
         </div>
     </div>
+    <p class="text-center">
+        לא מצליח להתחבר? <span class="modal-open" (click)="contactPopup()"> לחץ כאן</span>
+    </p>
 </div>
-<ng-template #propertyDetailsModal class="demo">
-    <h4 class="modal-title-header text-center" id="modal-basic-title">Profile update</h4>
+
+<!--Modal forgot-password -->
+<ng-template #propertyDetailsModal >
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
-       <p>Welcome</p>
+        <div class="forgot-password">
+            <p class="text-center weight-400">מיד נשלח אליה קישור ליצירת סיסמה חדשהנא למלא את כתובת המייל איתה נרשמת
+                לאתר.
+            </p>
+            <div class="input-group">
+                <div class="w-100">
+                    <div class="field-container">
+                        <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
+                        <label class="field-placeholder" for="inputName">דוא״ל</label>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary" (click)="changePassword()">המשך</button>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!--Modal change Password -->
+<ng-template #changePasswordModal >
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה  </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="change-password">
+            <p>שלחנו לך הודעה לכתובת המייל</p>
+            <p class="weight-700">email@gmail.com</p>
+            <p>לחידוש הסיסמה יש להיכנס לקישור</p>
+            <p class="mt-5"> לא קיבלתי <span class="modal-open" (click)="sendSgainPopup()"> שלחו שוב </span> </p>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary">חזרה לעמוד הבית</button>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!--Modal Send again email -->
+<ng-template #sendAgainModal >
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> חידוש סיסמה </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="forgot-password">
+            <div class="input-group mt-0">
+                <div class="w-100">
+                    <div class="field-container">
+                        <input class="field-input" id="inputid" name="inputName" type="text" placeholder="סיסמה חדשה">
+                        <label class="field-placeholder" for="inputName">סיסמה חדשה</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="w-100">
+                    <div class="field-container">
+                        <input class="field-input" id="inputid" name="inputName" type="text" placeholder="אימות סיסמה">
+                        <label class="field-placeholder" for="inputName">אימות סיסמה</label>
+                    </div>
+                </div>
+            </div>
+            <ul class="renewal-details">
+                <li> סיסמה תכיל מ- 7 תווים לפחות </li>
+                <li>הסיסמה לא תכיל בתוכה את הערך שב - ״שם פרטי״ או ״שם משפחה״</li>
+                <li>הסיסמה תכיל צירוף של 3 מתוך 4 קטגוריות הבאות:</li>
+                <li>םידחוימ םיות ,תורפס ,תונטק תויזעול תויתוא ,תולודג תויזעול תויתוא</li>
+            </ul>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary">המשך</button>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!--Modal forgot Password -->
+<ng-template #changePasswordModal>
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="change-password">
+            <p>החלצהב התנוש המסיס</p>
+            <p class="weight-700">תוסנל תעכ ןתינ החלצהב התנוש ךתמסיס
+            תכרעמל בוש רבחתהלו</p>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary"> המשך</button>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<ng-template #contactPopupModal >
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="forgot-password">
+            <p class="text-center weight-400">מיד נשלח אליה קישור ליצירת סיסמה חדשהנא למלא את כתובת המייל איתה נרשמת
+                לאתר.
+            </p>
+            <div class="input-group">
+                <div class="w-100">
+                    <div class="field-container">
+                        <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
+                        <label class="field-placeholder" for="inputName">דוא״ל</label>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary">המשך</button>
+            </div>
+        </div>
     </app-modal>
 </ng-template>

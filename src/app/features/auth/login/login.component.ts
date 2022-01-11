@@ -7,14 +7,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public modalRef:any;
+  public modalRef: any;
   @ViewChild('propertyDetailsModal') propertyDetailsModalRef!: TemplateRef<any>;
+  @ViewChild('changePasswordModal') changePasswordModalRef!: TemplateRef<any>;
+  @ViewChild('contactPopupModal') contactPopupModalRef!: TemplateRef<any>;
+  @ViewChild('sendAgainModal') sendAgainModalRef!: TemplateRef<any>;
 
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {}
 
-  public closeModalEvent(isCloseModal:any): void {
+  public closeModalEvent(isCloseModal: any): void {
     console.log(`closeModalEvent isCloseModal`, isCloseModal);
     if (isCloseModal) {
       this.modalRef.close();
@@ -26,6 +29,30 @@ export class LoginComponent implements OnInit {
     this.modalRef = this.modalService.open(this.propertyDetailsModalRef, {
       centered: true,
       size: 'md',
+      modalDialogClass: 'property-modal',
+    });
+  }
+  public changePassword(): void {
+    console.log('changePassword', this.changePasswordModalRef);
+    this.modalRef = this.modalService.open(this.changePasswordModalRef, {
+      centered: true,
+      size: 'md',
+      modalDialogClass: 'property-modal',
+    });
+  }
+  public sendSgainPopup(): void {
+    console.log('sendSgainPopup', this.sendAgainModalRef);
+    this.modalRef = this.modalService.open(this.sendAgainModalRef, {
+      centered: true,
+      size: 'md',
+      modalDialogClass: 'property-modal',
+    });
+  }
+  public contactPopup(): void {
+    console.log('contactPopup', this.contactPopupModalRef);
+    this.modalRef = this.modalService.open(this.contactPopupModalRef, {
+      centered: true,
+      size: 'lg',
       modalDialogClass: 'property-modal',
     });
   }

@@ -1,19 +1,35 @@
 .signup {
   background-color: #fff;
   border-radius: 8px;
-  padding: 70px 80px;
+  padding: 82px 122px;
   box-shadow: 0px 0px 7px 2px rgb(212 209 227 / 30%);
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  @media screen and (max-width: 991px) {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 50px;
+  }
   @media screen and (max-width: 575px) {
-  margin-top: 20px;
-  margin-bottom: 20px;
-    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .color-theme {
+    color: #0d204c;
   }
   .heading {
     .title {
       color: #0d204c;
       font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 60px;
+      @media screen and (max-width: 575px) {
+        font-size: 22px;
+        margin-bottom: 30px !important;
+      }
     }
     .sub-title {
       color: #324267;
@@ -26,10 +42,41 @@
       }
     }
   }
+  .signup-footer {
+    @media screen and (max-width: 575px) {
+      justify-content: center !important;
+      margin-top: 20px !important;
+    }
+    p {
+      @media screen and (max-width: 575px) {
+        font-size: 12px;
+        line-height: 16px;
+        order: 1;
+      }
+    }
+    button {
+      margin: 8px 0;
+      @media screen and (max-width: 575px) {
+        margin: 8px 0 27px !important;
+      }
+    }
+  }
   .information {
     margin: 30px 0px 60px;
-     @media screen and (max-width: 575px) {
-     margin: 30px 0px 30px;
+    @media screen and (max-width: 575px) {
+      margin: 50px 0px 30px;
+    }
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
   }
+  .contant {
+    color: #0d204c;
+    font-size: 16px;
+    @media screen and (max-width: 575px) {
+      margin-bottom: 20px !important;
+    }
   }
 }

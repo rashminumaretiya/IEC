@@ -1,28 +1,50 @@
 .login {
   background-color: #fff;
   border-radius: 8px;
-  padding: 70px 80px;
+  padding: 82px 105px;
   box-shadow: 0px 0px 7px 2px rgb(212 209 227 / 30%);
-  margin-top: 50px;
+  margin-top: 150px;
+  margin-bottom: 45px;
+  @media screen and (max-width: 991px) {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 50px;
+  }
+  @media screen and (max-width: 575px) {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
   .heading {
+    margin-bottom: 0;
     .title {
       color: #0d204c;
       font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 0;
+      @media screen and (max-width: 575px) {
+        font-size: 22px;
+      }
     }
     .sub-title {
       color: #324267;
       font-weight: 500;
-
-      a {
-        color: #324267;
-        font-weight: 700;
-        text-decoration: underline;
+      margin-bottom: 40px;
+      @media screen and (max-width: 575px) {
+        margin-bottom: 23px;
       }
     }
   }
   .information {
     margin: 30px 0px 60px;
   }
+}
+a {
+  color: #324267;
+  font-weight: 700;
+  text-decoration: underline;
 }
 .forgot-p {
   color: #0d204c;
@@ -33,12 +55,7 @@
   margin: 10px 0;
   cursor: pointer;
 }
-.modal-title-header {
-  background: linear-gradient(162.51deg, #7ca3f7 -76.98%, #244ca8 181.51%);
-  border-radius: 20px 20px 0 0;
-  padding: 20px 0;
-  color: #fff;
-}
+
 .property-modal {
   max-width: 500px;
 }
@@ -52,5 +69,33 @@
     padding: 9px 16px;
     height: calc(2.5em + 0.75rem + 2px);
     border-radius: 10px;
+  }
+}
+.forgot-password {
+  max-width: 335px;
+  margin: auto;
+  .input-group {
+    margin-top: 37px;
+  }
+}
+.renewal-details {
+  margin-right: 20px;
+  margin-top: 17px;
+  li {
+    font-size: 12px;
+    font-weight: 400;
+    &::marker {
+      color: #F2994A;
+    }
+  }
+}
+.change-password {
+  max-width: 216px;
+  margin-left: auto;
+  margin-right: auto;
+  p {
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: 500;
   }
 }
