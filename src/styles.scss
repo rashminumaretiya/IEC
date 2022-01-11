@@ -13,15 +13,15 @@ body {
   min-height: 100vh;
   &.open {
     &:after {
-        content: "";
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background-color: #000512;
-        opacity: 0.78;
-        z-index: 9;
+      content: "";
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background-color: #000512;
+      opacity: 0.78;
+      z-index: 9;
     }
   }
 }
@@ -33,11 +33,14 @@ ul {
   padding: 0;
 }
 .main-content {
-    padding: 90px 0;
-    overflow: hidden;
-    @media screen and (max-width: 767px) {
-      padding: 0;
-    }
+  padding: 90px 0;
+  overflow: hidden;
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
+}
+.text-orange {
+  color: #fdcb6c !important;
 }
 hr {
   border-color: #e6ebf7;
@@ -210,50 +213,70 @@ label {
   font-weight: normal;
 }
 
-input.field-input:-webkit-autofill {
+.field-input:-webkit-autofill {
   -webkit-text-fill-color: #030303;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
-input.field-input:focus {
+.field-input:focus {
   outline: none;
 }
-input.field-input.c-fix,
-input.field-input:focus,
-input.field-input:not(:placeholder-shown) {
+.field-input.c-fix,
+.field-input:focus,
+.field-input:not(:placeholder-shown) {
   border-color: transparent;
 }
-input.field-input.c-fix ~ label,
-input.field-input:focus ~ label,
-input.field-input:not(:placeholder-shown) ~ label {
+.field-input.c-fix ~ label,
+.field-input:focus ~ label,
+.field-input:not(:placeholder-shown) ~ label {
   color: #647687;
   font-size: 11px;
   top: calc(30% - 0.5rem);
   transform: translate(5px, 0%);
 }
-input {
-  &.field-input {
-    color: #000;
-    border: none;
-    padding: 5px;
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: 600;
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    bottom: 0px;
-    &::-webkit-input-placeholder {
-      color: transparent;
-    }
-    &::-moz-placeholder {
-      color: transparent;
-    }
-    &:-ms-input-placeholder {
-      color: transparent;
+.field-input {
+  color: #000;
+  border: none;
+  padding: 5px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0px;
+  &::-webkit-input-placeholder {
+    color: transparent;
+  }
+  &::-moz-placeholder {
+    color: transparent;
+  }
+  &:-ms-input-placeholder {
+    color: transparent;
+  }
+}
+.modal-contact-us {
+  opacity: 1;
+  .contact-us {
+    .text-area {
+      height: 137px;
+      resize: none;
+      .field-input {
+        height: 110px;
+        resize: none;
+        &.c-fix ~ label,
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+          top: 10px;
+        }
+      }
+      .field-placeholder {
+        top: 30px;
+      }
     }
   }
 }
+
 // Custom checkbox text field
 .checkbox-group {
   display: block;
@@ -307,7 +330,8 @@ input {
 ngb-datepicker {
   direction: ltr;
   .ngb-dp-month {
-    .btn-light,.ngb-dp-weekday {
+    .btn-light,
+    .ngb-dp-weekday {
       text-align: center !important;
     }
   }

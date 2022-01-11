@@ -85,8 +85,30 @@ a {
     font-size: 12px;
     font-weight: 400;
     &::marker {
-      color: #F2994A;
+      color: #f2994a;
     }
+  }
+}
+.forgot {
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
+  .tatle {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #0d204c;
+  }
+  .sub-title {
+    text-align: center;
+    font-weight: 600 !important;
+    font-size: 16px;
+  }
+}
+.contact-us {
+  .input-group {
+    margin: 0 0 30px;
   }
 }
 .change-password {

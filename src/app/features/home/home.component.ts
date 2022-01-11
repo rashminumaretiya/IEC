@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NgbCalendar, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
+  public modalRef: any;
+  @ViewChild('orderDetailsModal') orderDetailsModalRef!: TemplateRef<any>;
   public model!: NgbDateStruct;
   public model1!: NgbDateStruct;
-  public date!: {year: number, month: number};
+  public date!: { year: number; month: number };
 
-  constructor(private calendar: NgbCalendar) {  }  
+  constructor(private calendar: NgbCalendar, private modalService: NgbModal) {}
 
   selectToday() {
     this.model = this.calendar.getToday();
@@ -25,8 +26,18 @@ export class HomeComponent implements OnInit {
   isDropdownOpen: boolean = false;
   filterDropdownOpen: boolean = false;
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {}
+  public closeModalEvent(isCloseModal: any): void {
+    if (isCloseModal) {
+      this.modalRef.close();
+    }
+  }
+  public orderDetailsPopup(): void {
+    this.modalRef = this.modalService.open(this.orderDetailsModalRef, {
+      centered: true,
+      size: 'xl',
+      modalDialogClass: 'order-details-popup',
+    });
   }
 
   public orders = [

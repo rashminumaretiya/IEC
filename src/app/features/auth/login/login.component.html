@@ -45,7 +45,7 @@
 </div>
 
 <!--Modal forgot-password -->
-<ng-template #propertyDetailsModal >
+<ng-template #propertyDetailsModal>
     <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
         <div class="forgot-password">
@@ -68,8 +68,8 @@
 </ng-template>
 
 <!--Modal change Password -->
-<ng-template #changePasswordModal >
-    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה  </h4>
+<ng-template #changePasswordModal>
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
         <div class="change-password">
             <p>שלחנו לך הודעה לכתובת המייל</p>
@@ -84,7 +84,7 @@
 </ng-template>
 
 <!--Modal Send again email -->
-<ng-template #sendAgainModal >
+<ng-template #sendAgainModal>
     <h4 class="modal-title-header text-center" id="modal-basic-title"> חידוש סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
         <div class="forgot-password">
@@ -111,43 +111,104 @@
                 <li>םידחוימ םיות ,תורפס ,תונטק תויזעול תויתוא ,תולודג תויזעול תויתוא</li>
             </ul>
             <div class="text-center mt-5">
-                <button type="button" class="btn btn-primary">המשך</button>
+                <button type="button" class="btn btn-primary" (click)="popupForgot()">המשך</button>
             </div>
         </div>
     </app-modal>
 </ng-template>
 
-<!--Modal forgot Password -->
-<ng-template #changePasswordModal>
+<!--Modal forgot  -->
+<ng-template #forgotPopupModal>
     <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
-        <div class="change-password">
-            <p>החלצהב התנוש המסיס</p>
-            <p class="weight-700">תוסנל תעכ ןתינ החלצהב התנוש ךתמסיס
-            תכרעמל בוש רבחתהלו</p>
+        <div class="forgot">
+            <p class="tatle">החלצהב התנוש המסיס</p>
+            <p class="sub-title weight-700">תוסנל תעכ ןתינ החלצהב התנוש ךתמסיס
+                תכרעמל בוש רבחתהלו</p>
             <div class="text-center mt-5">
-                <button type="button" class="btn btn-primary"> המשך</button>
+                <button type="button" class="btn btn-primary" (click)="popupWrong()"> המשך</button>
             </div>
         </div>
     </app-modal>
 </ng-template>
 
-<ng-template #contactPopupModal >
+<!--Modal wrong forgot -->
+<ng-template #wrongPopupModal>
     <h4 class="modal-title-header text-center" id="modal-basic-title"> שכחתי סיסמה </h4>
     <app-modal (isCloseModal)="closeModalEvent($event)">
-        <div class="forgot-password">
-            <p class="text-center weight-400">מיד נשלח אליה קישור ליצירת סיסמה חדשהנא למלא את כתובת המייל איתה נרשמת
-                לאתר.
-            </p>
-            <div class="input-group">
-                <div class="w-100">
-                    <div class="field-container">
-                        <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
-                        <label class="field-placeholder" for="inputName">דוא״ל</label>
+        <div class="forgot">
+            <p class="tatle"> סליחה, משהו השתבש</p>
+            <p class="sub-title weight-700">יש לנסות מאוחר יותרלא הצלחנו לחדש את סיסמתך,</p>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-primary"> חזרה לעמוד הבית</button>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!-- --Modal contact-us  -- -->
+<ng-template #contactPopupModal>
+    <h4 class="modal-title-header text-center" id="modal-basic-title"> צור קשר </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="contact-us">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="w-100">
+                            <div class="field-container">
+                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                    placeholder="*שם פרטי">
+                                <label class="field-placeholder" for="inputName">*שם פרטי</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="w-100">
+                            <div class="field-container">
+                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                    placeholder="*שם משפחה">
+                                <label class="field-placeholder" for="inputName">*שם משפחה</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="w-100">
+                            <div class="field-container">
+                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                    placeholder="*מספר נייד">
+                                <label class="field-placeholder" for="inputName">*מספר נייד</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="w-100">
+                            <div class="field-container">
+                                <input class="field-input" id="inputid" name="inputName" type="text"
+                                    placeholder="*דוא״ל">
+                                <label class="field-placeholder" for="inputName">*דוא״ל</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <div class="w-100">
+                            <div class="field-container text-area">
+                                <textarea rows='5' class="field-input" id="inputid" name="inputName" type="text"
+                                    placeholder="טוריפ"></textarea>
+                                <label class="field-placeholder" for="inputName">טוריפ</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-5">
+            <div class="text-center mt-4">
                 <button type="button" class="btn btn-primary">המשך</button>
             </div>
         </div>

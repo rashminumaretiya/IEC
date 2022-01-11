@@ -38,7 +38,7 @@
         padding: 62px;
         border-radius: 0 0 20px 20px;
         @media screen and (max-width: 575px) {
-          padding: 62px 15px;
+          padding: 45px 15px;
         }
         @media screen and (min-width: 576px) and (max-width: 1920px) {
           background-image: url("../../../assets/images/bg-image.png");
@@ -50,5 +50,16 @@
   }
   .modal-md {
     max-width: 600px;
+  }
+
+  .order-details-popup {
+    @media screen and (min-width: 1200px) {
+      max-width: 1110px !important;
+    }
+    .modal-content {
+      .modal-body {
+        padding: 0 !important;
+      }
+    }
   }
 }

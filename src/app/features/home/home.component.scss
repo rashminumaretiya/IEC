@@ -165,9 +165,9 @@
         }
         &.active {
             background: radial-gradient(303.32% 287.68% at 42.95% -78.27%, #FFC264 0%, #F47216 100%), linear-gradient(0deg, #F47216 0%, #FFA464 245.96%);
-            background: -moz-radial-gradient(303.32% 287.68% at 42.95% -78.27%, #FFC264 0%, #F47216 100%), linear-gradient(0deg, #F47216 0%, #FFA464 245.96%); /* FF3.6-15 */
-            background: -webkit-radial-gradient(303.32% 287.68% at 42.95% -78.27%, #FFC264 0%, #F47216 100%), linear-gradient(0deg, #F47216 0%, #FFA464 245.96%); /* Chrome10-25,Safari5.1-6 */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc264', endColorstr='#f47216',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            background: -moz-radial-gradient(303.32% 287.68% at 42.95% -78.27%, #FFC264 0%, #F47216 100%), linear-gradient(0deg, #F47216 0%, #FFA464 245.96%);
+            background: -webkit-radial-gradient(303.32% 287.68% at 42.95% -78.27%, #FFC264 0%, #F47216 100%), linear-gradient(0deg, #F47216 0%, #FFA464 245.96%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc264', endColorstr='#f47216',GradientType=1 );
             font-weight: 700;
         }
     }
