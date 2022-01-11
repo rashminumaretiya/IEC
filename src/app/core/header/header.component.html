@@ -1,59 +1,63 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container-fluid">
-      <div
-        class="sidebar-toggle"
-        (click)="sidebarToggleClicked()"
-        id="sidebarToggle"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <a class="navbar-brand mr-0" href="#"
+      <ng-container *ngIf="!isSignupOrLoginPage">
+        <div
+          class="sidebar-toggle"
+          (click)="sidebarToggleClicked()"
+          id="sidebarToggle"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </ng-container>
+      <a class="navbar-brand mr-0" href="home"
         ><img class="desktop-logo" src="assets/images/logo.svg" alt=""/><img class="mobile-logo" src="assets/images/logo-mobile.svg" alt=""/>
         <span class="logo-subtitle">שירות אישי לספק</span>
       </a>
-      <div class="usersort-info">
-          <span>שלום, שלהב הררי</span>
-          <h5>יאיר דוחובני כבלים בע״מ ח.פ 511199549</h5>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="main-menu">
-          <img (click)="sidebarToggleClicked()" src="assets/images/close-icon-white.svg" alt=""/>
-          <span>תפריט ראשי</span>
+      <ng-container *ngIf="!isSignupOrLoginPage">
+        <div class="usersort-info">
+            <span>שלום, שלהב הררי</span>
+            <h5>יאיר דוחובני כבלים בע״מ ח.פ 511199549</h5>
         </div>
-        <ul class="navbar-nav mr-auto ml-xl-4 ml-sm-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">התראות</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">נהלים ותמיכה טכנית</a>
-          </li>
-        </ul>
-      </div>
-      <div ngbDropdown placement="bottom-right" class="header-dropdown">
-        <button
-          class="btn btn-outline-primary"
-          id="dropdownBasic2"
-          ngbDropdownToggle
-        >
-        <img src="assets/images/user-icon.svg"> <span>שלהב הררי </span><i class="bi bi-chevron-down"></i>
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-          <div class="user-info">
-              <div class="user-icon">
-                  <img src="assets/images/user-icon.svg">
-              </div>
-              <div class="user-detail">
-                  <h6>שלהב הררי</h6>
-                  <p>יאיר דוחובני כבלים בע״מ ח.פ 511199549</p>
-                  <p>מס. ספק 1234567</p>
-              </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="main-menu">
+            <img (click)="sidebarToggleClicked()" src="assets/images/close-icon-white.svg" alt=""/>
+            <span>תפריט ראשי</span>
           </div>
-          <button ngbDropdownItem><img src="assets/images/logout.svg"> <span>התנתקות </span></button>
+          <ul class="navbar-nav mr-auto ml-xl-4 ml-sm-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">התראות</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">נהלים ותמיכה טכנית</a>
+            </li>
+          </ul>
         </div>
-      </div>
+        <div ngbDropdown placement="bottom-right" class="header-dropdown">
+          <button
+            class="btn btn-outline-primary"
+            id="dropdownBasic2"
+            ngbDropdownToggle
+          >
+          <img src="assets/images/user-icon.svg"> <span>שלהב הררי </span><i class="bi bi-chevron-down"></i>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+            <div class="user-info">
+                <div class="user-icon">
+                    <img src="assets/images/user-icon.svg">
+                </div>
+                <div class="user-detail">
+                    <h6>שלהב הררי</h6>
+                    <p>יאיר דוחובני כבלים בע״מ ח.פ 511199549</p>
+                    <p>מס. ספק 1234567</p>
+                </div>
+            </div>
+            <button ngbDropdownItem><img src="assets/images/logout.svg"> <span>התנתקות </span></button>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </nav>
 </header>

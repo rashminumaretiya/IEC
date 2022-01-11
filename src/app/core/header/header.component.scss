@@ -68,19 +68,6 @@ header {
                 .navbar-nav {
                     display: block;
                 }
-                &.show {
-                    &:after {
-                        content: "";
-                        position: fixed;
-                        left: 0;
-                        top: 0;
-                        bottom: 0;
-                        right: 0;
-                        background-color: #000512;
-                        opacity: 0.5;
-                        z-index: -1;
-                    }
-                }
             }
             .nav-link {
                 padding: 10px 20px;
@@ -100,6 +87,9 @@ header {
             padding: 50px 20px 10px;
             display: flex;
             align-items: center;
+            @media screen and (min-width: 768px) {
+                display: none;
+            }
             img {
                 margin-left: 15px;
             }

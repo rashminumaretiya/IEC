@@ -9,6 +9,19 @@ body {
   color: #27303C;
   background-image: url('assets/images/bg-image.png');
   background-size: cover;
+  &.open {
+    &:after {
+        content: "";
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #000512;
+        opacity: 0.5;
+        z-index: 9;
+    }
+}
 }
 
 body[dir="rtl"] * {

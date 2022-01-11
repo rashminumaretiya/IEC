@@ -1,14 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import {
+  Event,
+  NavigationEnd,
+  Router,
+} from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  public isSignupOrLoginPage = true;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(
+    private router: Router
+  ) {
+    router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        if (
+          event.urlAfterRedirects.includes('signup') ||
+          event.urlAfterRedirects.includes('login')
+        ) {
+          this.isSignupOrLoginPage = true;
+        } else {
+          this.isSignupOrLoginPage = false;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.scroll, true);
@@ -17,10 +37,10 @@ export class HeaderComponent implements OnInit {
   public scroll = (event: any): void => {
     if (window.scrollY >= 80) {
       const headerTag = document.getElementById('header');
-      headerTag?.classList.add("fixed");
+      headerTag?.classList.add('fixed');
     } else {
       const headerTag = document.getElementById('header');
-      headerTag?.classList.remove("fixed");
+      headerTag?.classList.remove('fixed');
     }
   };
 
@@ -33,12 +53,13 @@ export class HeaderComponent implements OnInit {
     const body = document.getElementById('body');
 
     if (!headerTag?.classList.contains('show')) {
-      headerTag?.classList.add("show");
-      sidebarToggleTag?.classList.add("open");
-      body?.classList.add("open");
+      headerTag?.classList.add('show');
+      sidebarToggleTag?.classList.add('open');
+      body?.classList.add('open');
     } else {
-      headerTag?.classList.remove("show");
-      sidebarToggleTag?.classList.remove("open");
+      headerTag?.classList.remove('show');
+      sidebarToggleTag?.classList.remove('open');
+      body?.classList.remove('open');
     }
   }
 }
