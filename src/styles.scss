@@ -10,6 +10,7 @@ body {
   background-image: url("assets/images/bg-image.png");
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
   &.open {
     &:after {
         content: "";
@@ -55,6 +56,9 @@ label {
 }
 .weight-700 {
   font-weight: 700 !important;
+}
+.text-red {
+  color: #D50B0F !important;
 }
 
 .container-xl,
@@ -137,6 +141,7 @@ label {
     border-right: 1px solid #244ca8;
     border-bottom: 1px solid #244ca8;
     display: none;
+    z-index: 9;
     li {
       list-style: none;
       padding: 10px;
@@ -375,5 +380,25 @@ ngb-datepicker {
       font-size: 20px;
       line-height: 40px;
     }
+  }
+}
+
+.alert {
+  background: rgba(52, 105, 225, 0.02);
+  border: 1px solid rgba(52, 105, 225, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  line-height: normal;
+  @media screen and (max-width: 575px) {
+      padding: 8px 10px;
+  }
+  img {
+      margin-left: 10px;
+  }
+  &.alert-danger {
+    color: #D50B0F;
   }
 }

@@ -112,6 +112,39 @@
         border-radius: 6px;
         padding: 30px 30px 20px;
         margin-top: 10px;
+        @media screen and (max-width: 575px) {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 99;
+            border-radius: 0;
+            margin-top: 0;
+            padding-top: 0;
+            overflow-y: auto;
+            bottom: 0;
+        }
+        .filter-close {
+            background: linear-gradient(163.45deg, #7CA3F7 -86.15%, #244CA8 175.17%);
+            padding: 20px;
+            color: #fff;
+            margin-left: -30px;
+            margin-right: -30px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 26px;
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            @media screen and (min-width: 576px) {
+                display: none;
+            }
+            img {
+                position: absolute;
+                left: 15px;
+                top: 25px;
+            }
+        }
     }
     &.filter-open {
         display: block;
@@ -145,22 +178,6 @@
     border-top: 1px solid #E6EBF7;
     padding: 20px 30px 0;
 }
-.alert {
-    background: rgba(52, 105, 225, 0.02);
-    border: 1px solid rgba(52, 105, 225, 0.1);
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    line-height: normal;
-    @media screen and (max-width: 575px) {
-        padding: 8px 10px;
-    }
-    img {
-        margin-left: 10px;
-    }
-}
 .order-summary {
     ::ng-deep {
         .card {
@@ -184,6 +201,7 @@
                     padding: 0;
                     position: relative;
                     padding-left: 55px;
+                    width: 100%;
                     @media screen and (max-width: 991px) {
                         padding-left: 0;
                         border-radius: 10px;
@@ -209,7 +227,7 @@
                             -moz-transform: none;
                             -webkit-transform: none;
                             transform: none;
-                            top: 30px;
+                            top: 20px;
                         }
                     }
                     .order-details {
@@ -217,6 +235,7 @@
                         display: flex;
                         font-size: 14px;
                         color: #27303C;
+                        min-height: 75px;
                         @media screen and (max-width: 1199px) {
                             font-size: 13px; 
                         }
@@ -233,17 +252,17 @@
                             width: 32%;
                             display: flex;
                             align-items: center;
-                            padding: 8px 30px;
+                            padding: 8px 30px 8px 40px;
                             background: linear-gradient(147.53deg, rgba(220, 231, 255, 0.7) -4.61%, rgba(144, 178, 252, 0.7) 96.72%);
                             position: relative;
                             border-radius: 0 23px 23px 0;
                             @media screen and (max-width: 1199px) {
-                                padding: 8px 15px;
+                                padding: 8px 15px 8px 40px;
                             }
                             @media screen and (max-width: 991px) {
                                 width: 100%;
                                 border-radius: 10px 10px 0 0;
-                                padding-left: 50px;
+                                padding-left: 80px;
                             }
                             &:before {
                                 content: "";
@@ -332,6 +351,11 @@
                             -webkit-transform: translateY(-50%) rotate(-180deg);
                             transform: translateY(-50%) rotate(-180deg);
                             color: #FA6500;
+                            @media screen and (max-width: 991px) {
+                                -moz-transform: translateY(0) rotate(-180deg);
+                                -webkit-transform: translateY(0) rotate(-180deg);
+                                transform: translateY(0) rotate(-180deg);
+                            }
                         }
                         .order-text {
                             background: linear-gradient(163.45deg, #7CA3F7 -86.15%, #244CA8 175.17%);
@@ -391,6 +415,108 @@
                         vertical-align: middle;
                         margin-right: 5px;
                         font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    &.supplies-summary {
+        ::ng-deep {
+            .card {
+                .card-header {
+                    .btn {
+                        .order-details {
+                            .order-desc {
+                                width: 30%;
+                                @media screen and (max-width: 991px) {
+                                    width: 100%;
+                                }
+                            }
+                            .order-currency {
+                                width: 10%;
+                                @media screen and (max-width: 991px) {
+                                    width: 33.33%;
+                                }
+                            }
+                            .order-value {
+                                width: 12%;
+                                @media screen and (max-width: 991px) {
+                                    width: 33.33%;
+                                }
+                            }
+                            .order-delivery {
+                                width: 16%;
+                                @media screen and (max-width: 991px) {
+                                    width: 33.33%;
+                                }
+                            }
+                        }
+                    }
+                }
+                .card-body {
+                    .order-full-details {
+                        li {
+                            @media screen and (max-width: 991px) {
+                                width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.payment-summary {
+        ::ng-deep {
+            .card {
+                .card-header {
+                    .btn {
+                        pointer-events: none;
+                        padding-left: 0;
+                        &:after {
+                            content: none;
+                        }
+                        .order-text {
+                            @media screen and (max-width: 991px) {
+                                &:before {
+                                    content: none;
+                                }
+                            }
+                        }
+                        .order-desc {
+                            width: 18%;
+                            padding: 15px 10px;
+                            @media screen and (max-width: 991px) {
+                                width: 40%;
+                            }
+                        }
+                        .order-value {
+                            width: 22%;
+                            padding: 15px 10px;
+                            @media screen and (max-width: 991px) {
+                                width: 40%;
+                            }
+                        }
+                        .order-currency {
+                            width: 14%;
+                            padding: 15px 10px;
+                            @media screen and (max-width: 991px) {
+                                width: 20%;
+                            }
+                        }
+                        .payment-more {
+                            display: flex;
+                            align-items: center;
+                            padding: 15px 10px;
+                            width: 12%;
+                            @media screen and (max-width: 1199px) {
+                                padding: 8px 5px;
+                            }
+                            @media screen and (max-width: 991px) {
+                                padding: 5px 10px 15px 5px;
+                                justify-content: flex-end;
+                                width: 100%;
+                            }
+                        }
                     }
                 }
             }

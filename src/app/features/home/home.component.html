@@ -1,38 +1,46 @@
 <div class="main-content">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <ul ngbNav #nav="ngbNav" class="nav-tabs comman-nav-tabs filter-tab">
                     <li [ngbNavItem]="1">
                       <a ngbNavLink>הזמנות</a>
                       <ng-template ngbNavContent>
+                        <div class="search-result">
+                            <div class="alert">
+                                <img src="assets/images/info-icon.svg" alt=""/>
+                                <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                            </div>
+                            <h6>תוצאות חיפוש</h6>
+                            <p><span>סה״כ סכומי הזמנות:</span>739,508.70</p>
+                        </div>
                         <div class="order-summary">
                             <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-                                <ngb-panel *ngFor="let data of [1,2,3,4,5,6,7]">
+                                <ngb-panel *ngFor="let data of orders">
                                     <ng-template ngbPanelTitle>
                                         <div class="order-details">
                                             <div class="order-text">
-                                                <h6>מס. הזמנה 4001105623 </h6>
+                                                <h6>{{ data?.orderTitle }} <img class="mr-1" *ngIf="data?.orderIcon" src={{data?.orderIcon}} alt=""/></h6>
                                             </div>
                                             <div class="order-desc">
-                                                <label>תיאור הזמנה</label>
-                                                <p>לא לאספקה - כיסוי להזמנה 4001065837 תעודת משלוח 8833.21.0152</p>
+                                                <label>{{ data?.descTitle }}</label>
+                                                <p>{{ data?.descDetail }}</p>
                                             </div>
                                             <div class="order-status">
-                                                <label>סטאטוס</label>
-                                                <p>סופקהטרם</p>
+                                                <label>{{ data?.statusTitle }}</label>
+                                                <p>{{ data?.statusDetail }}</p>
                                             </div>
                                             <div class="order-value">
-                                                <label>ערך הזמנה</label>
-                                                <p>031.48,737</p>
+                                                <label>{{ data?.valueTitle }}</label>
+                                                <p>{{ data?.valueDetail }}</p>
                                             </div>
                                             <div class="order-currency">
-                                                <label>סוג מטבע</label>
-                                                <p>USD</p>
+                                                <label>{{ data?.currencyTitle }}</label>
+                                                <p>{{ data?.currencyDetail }}</p>
                                             </div>
                                             <div class="order-delivery">
-                                                <label>ת. אספקה ראשון</label>
-                                                <p>15/12/2021</p>
+                                                <label>{{ data?.deliveryTitle }}</label>
+                                                <p>{{ data?.deliveryDetail }}</p>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -52,19 +60,145 @@
                     <li [ngbNavItem]="2">
                       <a ngbNavLink>אספקות</a>
                       <ng-template ngbNavContent>
-                        <p>assasa</p>
+                        <div class="search-result">
+                            <div class="alert">
+                                <img src="assets/images/info-icon.svg" alt=""/>
+                                <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                            </div>
+                            <div class="alert alert-danger">
+                                <img src="assets/images/info-icon-red.svg" alt=""/>
+                                <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                            </div>
+                            <p><span>סה״כ סכומי הזמנות:</span>739,508.70</p>
+                        </div>
+                        <div class="order-summary supplies-summary">
+                            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                                <ngb-panel *ngFor="let data of supplies">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="order-details">
+                                            <div class="order-text">
+                                                <h6>{{ data?.orderTitle }} <img class="mr-1" *ngIf="data?.orderIcon" src={{data?.orderIcon}} alt=""/></h6>
+                                            </div>
+                                            <div class="order-desc">
+                                                <label>{{ data?.descTitle }}</label>
+                                                <p>{{ data?.descDetail }}</p>
+                                            </div>
+                                            <div class="order-value">
+                                                <label class={{data?.extraClass}}>{{ data?.valueTitle }}</label>
+                                                <p class={{data?.extraClass}}>{{ data?.valueDetail }}</p>
+                                            </div>
+                                            <div class="order-currency">
+                                                <label>{{ data?.currencyTitle }}</label>
+                                                <p>{{ data?.currencyDetail }}</p>
+                                            </div>
+                                            <div class="order-delivery">
+                                                <label class={{data?.extraClass}}>{{ data?.deliveryTitle }}</label>
+                                                <p class={{data?.extraClass}}>{{ data?.deliveryDetail }}</p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <ul class="order-full-details">
+                                            <li><label>ת. שליחת הזמנה לספק</label><span>1.1.2021</span></li>
+                                            <li><label>מספר דגם ליצרן</label><span>----</span></li>
+                                            <li><label>שם מטפל בהזמנה</label><a href="#">ילארשי לארשי</a></li>
+                                            <li><label>טל. של מטפל</label><span>076-44444444</span></li>
+                                        </ul>
+                                        <a href="#" class="order-link"><span>פרטים נוספים</span><i class="bi bi-chevron-left"></i></a>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
                       </ng-template>
                     </li>
                     <li [ngbNavItem]="3">
                       <a ngbNavLink>חשבוניות</a>
                       <ng-template ngbNavContent>
-                        <p>assasa</p>
+                        <div class="search-result">
+                            <div class="alert">
+                                <img src="assets/images/info-icon.svg" alt=""/>
+                                <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                            </div>
+                            <p><span>סה״כ:</span>739,508.70</p>
+                        </div>
+                        <div class="order-summary supplies-summary">
+                            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                                <ngb-panel *ngFor="let data of invoices">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="order-details">
+                                            <div class="order-text">
+                                                <h6>{{ data?.orderTitle }} <img class="mr-1" *ngIf="data?.orderIcon" src={{data?.orderIcon}} alt=""/></h6>
+                                            </div>
+                                            <div class="order-desc">
+                                                <label>{{ data?.descTitle }}</label>
+                                                <p>{{ data?.descDetail }}</p>
+                                            </div>
+                                            <div class="order-value">
+                                                <label class={{data?.extraClass}}>{{ data?.valueTitle }}</label>
+                                                <p class={{data?.extraClass}}>{{ data?.valueDetail }}</p>
+                                            </div>
+                                            <div class="order-currency">
+                                                <label>{{ data?.currencyTitle }}</label>
+                                                <p>{{ data?.currencyDetail }}</p>
+                                            </div>
+                                            <div class="order-delivery">
+                                                <label class={{data?.extraClass}}>{{ data?.deliveryTitle }}</label>
+                                                <p class={{data?.extraClass}}>{{ data?.deliveryDetail }}</p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <ul class="order-full-details">
+                                            <li><label>סה״כ</label><span>115,840.84</span></li>
+                                            <li><label>מטבע</label><span>USD</span></li>
+                                            <li><label>שם מטפל בחשבונית</label><a href="#">ישראל ישראלי</a></li>
+                                            <li><label>טל. של מטפל</label><span>076-44444444</span></li>
+                                        </ul>
+                                        <a href="#" class="order-link"><span>פרטים נוספים</span><i class="bi bi-chevron-left"></i></a>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
                       </ng-template>
                     </li>
                     <li [ngbNavItem]="4">
                       <a ngbNavLink>תשלומים</a>
                       <ng-template ngbNavContent>
-                        <p>assasa</p>
+                        <div class="search-result">
+                            <div class="alert">
+                                <img src="assets/images/info-icon.svg" alt=""/>
+                                <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
+                            </div>
+                            <p><span>סה״כ סכום ששולם במטבע הסכום: </span>739,508.70</p>
+                        </div>
+                        <div class="order-summary payment-summary">
+                            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                                <ngb-panel *ngFor="let data of payment">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="order-details">
+                                            <div class="order-text">
+                                                <h6>{{ data?.orderTitle }} <img class="mr-1" *ngIf="data?.orderIcon" src={{data?.orderIcon}} alt=""/></h6>
+                                            </div>
+                                            <div class="order-desc">
+                                                <label>{{ data?.descTitle }}</label>
+                                                <p>{{ data?.descDetail }}</p>
+                                            </div>
+                                            <div class="order-value">
+                                                <label class={{data?.extraClass}}>{{ data?.valueTitle }}</label>
+                                                <p class={{data?.extraClass}}>{{ data?.valueDetail }}</p>
+                                            </div>
+                                            <div class="order-currency">
+                                                <label>{{ data?.currencyTitle }}</label>
+                                                <p>{{ data?.currencyDetail }}</p>
+                                            </div>
+                                            <div class="payment-more">
+                                                <a href="#">{{ data?.paymentmore }} <i class="bi bi-chevron-left"></i></a>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
                       </ng-template>
                     </li>
                   </ul>
@@ -85,7 +219,8 @@
                       </div>
                       <div class="row" id="filter-option" [ngClass]="{ 'filter-open' : isSearchFilter }">
                           <div class="col-md-12">
-                            <div class="filter-form">
+                              <div class="filter-form">
+                                <div class="filter-close"><span>סינון ומיון</span><img  (click)="isSearchFilter = !isSearchFilter" src="assets/images/close-icon-white.svg" alt="" /></div>
                                 <div class="row align-items-end">
                                     <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
@@ -114,8 +249,8 @@
                                     <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <label>סינון לפי סטאטוס הזמנה:</label>
-                                            <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
-                                                <span class="toggle-dropdown" (click)="isDropdownOpen = !isDropdownOpen">סופקה</span>
+                                            <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : filterDropdownOpen}">
+                                                <span class="toggle-dropdown" (click)="filterDropdownOpen = !filterDropdownOpen">סופקה</span>
                                                 <ul class="dropdown-wrap">
                                                     <li>כל ההזמנות</li>
                                                     <li>סופקה</li>
@@ -153,14 +288,6 @@
                             </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="search-result">
-                      <div class="alert">
-                          <img src="assets/images/info-icon.svg" alt=""/>
-                         <span>שימו לב, המידע הינו מידע חלקי הנשלף ל - 4 חודשים אחורה</span>
-                      </div>
-                      <h6>תוצאות חיפוש</h6>
-                      <p><span>סה״כ סכומי הזמנות:</span>739,508.70</p>
                   </div>
                   <div [ngbNavOutlet]="nav" class="mt-2"></div>
             </div>

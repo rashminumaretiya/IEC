@@ -12,7 +12,9 @@ header {
     }
     @media screen and (max-width: 767px) {
         background: linear-gradient(163.45deg, #7CA3F7 -86.15%, #244CA8 175.17%);
-        margin-bottom: 63px;
+        &:not(.not-auth) {
+            margin-bottom: 63px;
+        }
     }
     .navbar {
         padding: 0;
