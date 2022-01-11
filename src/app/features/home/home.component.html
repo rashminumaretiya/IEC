@@ -6,10 +6,46 @@
                     <li [ngbNavItem]="1">
                       <a ngbNavLink>הזמנות</a>
                       <ng-template ngbNavContent>
-                        <div class="col-12 property-booking-slider">
-                            <div class="">
-                                
-                            </div>
+                        <div class="order-summary">
+                            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                                <ngb-panel *ngFor="let data of [1,2,3,4,5,6,7]">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="order-details">
+                                            <div class="order-text">
+                                                <h6>מס. הזמנה 4001105623 </h6>
+                                            </div>
+                                            <div class="order-desc">
+                                                <label>תיאור הזמנה</label>
+                                                <p>לא לאספקה - כיסוי להזמנה 4001065837 תעודת משלוח 8833.21.0152</p>
+                                            </div>
+                                            <div class="order-status">
+                                                <label>סטאטוס</label>
+                                                <p>סופקהטרם</p>
+                                            </div>
+                                            <div class="order-value">
+                                                <label>ערך הזמנה</label>
+                                                <p>031.48,737</p>
+                                            </div>
+                                            <div class="order-currency">
+                                                <label>סוג מטבע</label>
+                                                <p>USD</p>
+                                            </div>
+                                            <div class="order-delivery">
+                                                <label>ת. אספקה ראשון</label>
+                                                <p>15/12/2021</p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <ul class="order-full-details">
+                                            <li><label>ת. שליחת הזמנה לספק</label><span>1.1.2021</span></li>
+                                            <li><label>שם מטפל בהזמנה</label><a href="#">ילארשי לארשי</a></li>
+                                            <li><label>טל. של מטפל</label><span>076-44444444</span></li>
+                                        </ul>
+                                        <a href="#" class="order-link"><span>פרטים נוספים</span><i class="bi bi-chevron-left"></i></a>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
                         </div>
                       </ng-template>
                     </li>
@@ -34,13 +70,13 @@
                   </ul>
                   <div class="filter">
                       <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-sm-8">
                             <div class="search-wrap">
                                 <input type="text" placeholder="חיפוש לפי מספר הזמנה"/>
                                 <button><img src="assets/images/search-icon.svg" alt=""/></button>
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-sm-4">
                             <div class="filter-icon text-left" [ngClass]="{ 'show' : isSearchFilter }" (click)="isSearchFilter = !isSearchFilter">
                                <span>סינון</span>
                                <img [src]="!isSearchFilter ? 'assets/images/filter-icon.svg' : 'assets/images/close-icon.svg'" alt=""/>
@@ -51,7 +87,7 @@
                           <div class="col-md-12">
                             <div class="filter-form">
                                 <div class="row align-items-end">
-                                    <div class="col-md-5">
+                                    <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <label>מיון לפי:</label>
                                             <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
@@ -64,7 +100,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-lg-4 col-md-5">
                                         <div class="form-group">
                                             <div class="asc-desc-order">
                                                  <button class="active"><span>סדר עולה</span> <img src="assets/images/up-arrow.svg" alt=""/></button>
@@ -75,7 +111,7 @@
                                 </div>
                                 <hr/>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <label>סינון לפי סטאטוס הזמנה:</label>
                                             <div class="custom-dropdown" [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
@@ -90,22 +126,22 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-end">
-                                    <div class="col-md-5">
+                                    <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <label>סינון לפי תאריך הזמנה:</label>
                                             <div class="field-container">
-                                                <input class="field-input" id="inputid" name="inputName" type="text"
-                                                    placeholder="דוא״ל">
+                                                <input class="field-input" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker">
                                                 <label class="field-placeholder" for="inputName">דוא״ל</label>
+                                                <span class="icon-left" (click)="d.toggle()" type="button"><img src="assets/images/calendar.svg" alt=""/></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <div class="field-container">
-                                                <input class="field-input" id="inputid" name="inputName" type="text"
-                                                    placeholder="דוא״ל">
-                                                <label class="field-placeholder" for="inputName">דוא״ל</label>
+                                                <input class="field-input" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="model1" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker">
+                                                <label class="field-placeholder" for="inputName1">דוא״ל</label>
+                                                <span class="icon-left" (click)="d1.toggle()" type="button"><img src="assets/images/calendar.svg" alt=""/></span>
                                             </div>
                                         </div>
                                     </div>

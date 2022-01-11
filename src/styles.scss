@@ -9,17 +9,18 @@ body {
   color: #27303c;
   background-image: url("assets/images/bg-image.png");
   background-size: cover;
+  background-repeat: no-repeat;
   &.open {
     &:after {
-      content: "";
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      background-color: #000512;
-      opacity: 0.5;
-      z-index: 9;
+        content: "";
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #000512;
+        opacity: 0.78;
+        z-index: 9;
     }
   }
 }
@@ -31,7 +32,11 @@ ul {
   padding: 0;
 }
 .main-content {
-  padding: 90px 0;
+    padding: 90px 0;
+    overflow: hidden;
+    @media screen and (max-width: 767px) {
+      padding: 0;
+    }
 }
 hr {
   border-color: #e6ebf7;
@@ -287,6 +292,22 @@ input {
       height: 18px;
       border-radius: 4px;
     }
+  }
+}
+.icon-left {
+  position: absolute;
+  left: 15px;
+  top: 13px;
+}
+ngb-datepicker {
+  direction: ltr;
+  .ngb-dp-month {
+    .btn-light,.ngb-dp-weekday {
+      text-align: center !important;
+    }
+  }
+  .ngb-dp-navigation-select * {
+    text-align: left !important;
   }
 }
 
