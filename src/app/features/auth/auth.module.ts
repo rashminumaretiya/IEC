@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     AuthRoutingModule,
     CoreModule,
-    NgbModalModule
+    NgbModalModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

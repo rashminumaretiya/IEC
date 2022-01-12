@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +9,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
   public modalRef: any;
+  public loginForm: FormGroup = this.fb.group({});
+  public isInvalidForm: boolean = false;
+
   @ViewChild('propertyDetailsModal') propertyDetailsModalRef!: TemplateRef<any>;
   @ViewChild('changePasswordModal') changePasswordModalRef!: TemplateRef<any>;
   @ViewChild('contactPopupModal') contactPopupModalRef!: TemplateRef<any>;
@@ -16,9 +20,24 @@ export class LoginComponent implements OnInit {
   @ViewChild('wrongPopupModal') wrongPopupModalRef!: TemplateRef<any>;
   @ViewChild('orderDetailsModal') orderDetailsModalRef!: TemplateRef<any>;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initLoginForm();
+  }
+
+  initLoginForm() {
+    this.loginForm = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
+        ],
+      ],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
 
   public closeModalEvent(isCloseModal: any): void {
     console.log(`closeModalEvent isCloseModal`, isCloseModal);
@@ -28,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   public openPopup(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
     console.log('openPopup', this.propertyDetailsModalRef);
     this.modalRef = this.modalService.open(this.propertyDetailsModalRef, {
       centered: true,
@@ -37,7 +56,7 @@ export class LoginComponent implements OnInit {
     });
   }
   public changePassword(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
     console.log('changePassword', this.changePasswordModalRef);
     this.modalRef = this.modalService.open(this.changePasswordModalRef, {
       centered: true,
@@ -47,7 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   public sendSgainPopup(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
 
     console.log('sendSgainPopup', this.sendAgainModalRef);
     this.modalRef = this.modalService.open(this.sendAgainModalRef, {
@@ -57,7 +76,7 @@ export class LoginComponent implements OnInit {
     });
   }
   public popupForgot(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
 
     console.log('popupForgot', this.forgotPopupModalRef);
     this.modalRef = this.modalService.open(this.forgotPopupModalRef, {
@@ -67,7 +86,7 @@ export class LoginComponent implements OnInit {
     });
   }
   public popupWrong(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
 
     console.log('popupForgot', this.wrongPopupModalRef);
     this.modalRef = this.modalService.open(this.wrongPopupModalRef, {
@@ -78,7 +97,7 @@ export class LoginComponent implements OnInit {
   }
 
   public contactPopup(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
 
     console.log('contactPopup', this.contactPopupModalRef);
     this.modalRef = this.modalService.open(this.contactPopupModalRef, {
@@ -89,7 +108,7 @@ export class LoginComponent implements OnInit {
   }
 
   public orderDetailsPopup(): void {
-      this.modalRef && this.modalRef.close();
+    this.modalRef && this.modalRef.close();
 
     console.log('orderDetailsPopup', this.orderDetailsModalRef);
     this.modalRef = this.modalService.open(this.orderDetailsModalRef, {
@@ -97,5 +116,12 @@ export class LoginComponent implements OnInit {
       size: 'lg',
       modalDialogClass: 'property-modal',
     });
+  }
+
+  loginFormSubmit() {
+    console.log(`this.loginForm`, this.loginForm)
+    if(this.loginForm.invalid) {
+      this.isInvalidForm = true;
+    }
   }
 }

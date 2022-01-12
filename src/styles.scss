@@ -88,10 +88,6 @@ label {
   color: #000;
   border: none;
   line-height: normal;
-  @media screen and (max-width: 575px) {
-    padding: 10px 30px;
-    font-size: 16px;
-  }
 }
 .btn-red {
   background-color: transparent;
@@ -110,7 +106,9 @@ label {
     border-radius: 10px;
   }
 }
-
+.error-message {
+  color: #D50B0F;
+}
 .custom-dropdown {
   position: relative;
   .toggle-dropdown {
@@ -118,6 +116,7 @@ label {
     border: 1px solid rgba(36, 76, 168, 0.34);
     box-sizing: border-box;
     border-radius: 10px;
+    color: #78909C;
     display: block;
     padding: 14px 16px;
     cursor: pointer;
@@ -129,6 +128,7 @@ label {
       left: 12px;
       top: 15px;
       color: #244ca8;
+      border: 0;
     }
   }
   .dropdown-wrap {
@@ -143,18 +143,38 @@ label {
     border-left: 1px solid #244ca8;
     border-right: 1px solid #244ca8;
     border-bottom: 1px solid #244ca8;
-    display: none;
+    overflow: hidden;
     z-index: 9;
     li {
       list-style: none;
-      padding: 10px;
+      padding: 15px 16px 15px 50px;
       cursor: pointer;
+      position: relative;
       &:not(:last-child) {
         border-bottom: 1px solid rgba(36, 76, 168, 0.34);
       }
+      &:hover {
+        background-color: #D9E5FF;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 22px;
+        background-image: url('./assets/images/check.svg');
+        width: 14px;
+        height: 10px;
+        display: none;
+      }
+      &.selected {
+        background-color: #D9E5FF;
+        &:after {
+          display: block;
+        }
+      }
     }
   }
-  &.dropdown-open {
+  &.show {
     .toggle-dropdown {
       border-bottom-left-radius: 0;
       border-color: #244ca8;
@@ -167,6 +187,8 @@ label {
     }
     .dropdown-wrap {
       display: block;
+      top: 100% !important;
+      transform: none !important;
     }
   }
 }
@@ -190,7 +212,14 @@ label {
   }
 }
 // Custom input text field
-
+.error {
+  .field-container {
+    border-color: #D50B0F;
+      label {
+        color: #D50B0F !important;
+      }
+  }
+}
 .field-container {
   position: relative;
   background-color: #fff;
@@ -226,7 +255,7 @@ label {
 .field-input:not(:placeholder-shown) {
   border-color: transparent;
 }
-.field-input.c-fix ~ label,
+.field-input,
 .field-input:focus ~ label,
 .field-input:not(:placeholder-shown) ~ label {
   color: #647687;
@@ -240,7 +269,6 @@ label {
   padding: 5px;
   margin-top: 20px;
   font-size: 16px;
-  font-weight: 600;
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -253,6 +281,12 @@ label {
   }
   &:-ms-input-placeholder {
     color: transparent;
+  }
+  &:focus ~ label {
+    color: #CE6200;
+  }
+  &[ngbdatepicker] {
+    color: #78909C;
   }
 }
 .modal-contact-us {
@@ -341,6 +375,9 @@ ngb-datepicker {
 }
 
 .checkbox-group {
+  input:checked + label:before{
+    background-color: #f47216;
+  }
   input:checked + label:after {
     content: "";
     display: block;
@@ -349,7 +386,7 @@ ngb-datepicker {
     left: 16px;
     width: 6px;
     height: 12px;
-    border: solid #f47216;
+    border: solid #fff;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
@@ -359,7 +396,7 @@ ngb-datepicker {
 .modal-backdrop.show {
   opacity: 0.8;
 }
-.modal-open {
+.open-modal-popup {
   font-weight: 700;
   text-decoration: underline;
   cursor: pointer;
@@ -401,7 +438,7 @@ ngb-datepicker {
     line-height: normal;
     @media screen and (max-width: 575px) {
       border-radius: 0 !important;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 40px;
     }
   }
@@ -424,5 +461,94 @@ ngb-datepicker {
   }
   &.alert-danger {
     color: #D50B0F;
+  }
+}
+
+.field-dropdwon-container {
+  position: relative;
+  background-color: #fff;
+  max-width: 100%;
+  border-radius: 10px;
+  .custom-dropdown {
+    &.dropdown-open {
+      .toggle-dropdown {
+        border-color: #244ca8;
+      }
+    }
+    .toggle-dropdown {
+      background: #ffffff;
+      border: 1px solid rgba(36, 76, 168, 0.34);
+      font-weight: 400;
+      color: #78909c;
+    }
+    ul {
+      li {
+        color: #78909c;
+        font-weight: 400;
+      }
+    }
+  }
+}
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #27303c;
+    margin: 0 8px;
+  }
+  .switch {
+    display: inline-block;
+    height: 31px;
+    position: relative;
+    width: 51px;
+    margin-bottom: 0;
+    input {
+      display: none;
+      &:checked + .slider {
+        background: linear-gradient(13.29deg, #f47216 9.55%, #ffa464 120.52%);
+      }
+      &:checked + .slider::before {
+        transform: translateX(-20px);
+      }
+    }
+    .slider {
+      background: rgba(36, 76, 168, 0.154119);
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: 0.4s;
+      &::before {
+        background-color: #fff;
+        bottom: 2px;
+        content: "";
+        height: 27px;
+        right: 2px;
+        position: absolute;
+        transition: 0.4s;
+        width: 27px;
+      }
+      &.round {
+        border-radius: 34px;
+        &::before {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.file-upload {
+  input[type='file'] {
+    display: none;
+  }
+  label {
+    font-weight: normal;
+    cursor: pointer;
   }
 }

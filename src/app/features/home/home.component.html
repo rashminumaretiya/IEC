@@ -25,7 +25,7 @@
                                                 </div>
                                                 <div class="order-desc">
                                                     <label>{{ data?.descTitle }}</label>
-                                                    <p>{{ data?.descDetail }}</p>
+                                                    <p *ngFor="let detail of data.descDetail">{{ detail }}</p>
                                                 </div>
                                                 <div class="order-status">
                                                     <label>{{ data?.statusTitle }}</label>
@@ -48,11 +48,12 @@
                                         <ng-template ngbPanelContent>
                                             <ul class="order-full-details">
                                                 <li><label>ת. שליחת הזמנה לספק</label><span>1.1.2021</span></li>
-                                                <li><label>שם מטפל בהזמנה</label><a href="#">ילארשי לארשי</a></li>
-                                                <li><label>טל. של מטפל</label><span>076-44444444</span></li>
+                                                <li><label>שם מטפל בהזמנה</label><a href="#">ישראל ישראלי</a></li>
+                                                <li><label>טל. של מטפל</label><a href="tel:076-44444444" class="call">076-44444444</a></li>
                                             </ul>
-                                            <a href="#" class="order-link"><span>פרטים נוספים</span><i
-                                                    class="bi bi-chevron-left"></i></a>
+                                            <a href="javascript:void(0)" class="order-link"><span
+                                                (click)="orderDetailsPopup()">פרטים
+                                                נוספים</span><i class="bi bi-chevron-left"></i></a>
                                         </ng-template>
                                     </ngb-panel>
                                 </ngb-accordion>
@@ -107,7 +108,7 @@
                                                 <li><label>שם מטפל בהזמנה</label><a href="#">ילארשי לארשי</a></li>
                                                 <li><label>טל. של מטפל</label><span>076-44444444</span></li>
                                             </ul>
-                                            <a href="#" class="order-link"><span>פרטים נוספים</span><i
+                                            <a href="javascript:void(0);" class="order-link"><span (click)="orderInvoicePopup()">פרטים נוספים</span><i
                                                     class="bi bi-chevron-left"></i></a>
                                         </ng-template>
                                     </ngb-panel>
@@ -159,7 +160,7 @@
                                                 <li><label>שם מטפל בחשבונית</label><a href="#">ישראל ישראלי</a></li>
                                                 <li><label>טל. של מטפל</label><span>076-44444444</span></li>
                                             </ul>
-                                            <a href="#" class="order-link"><span>פרטים נוספים</span><i
+                                            <a href="javascript:void(0)" class="order-link" (click)="orderPaymentPopup()"><span>פרטים נוספים</span><i
                                                     class="bi bi-chevron-left"></i></a>
                                         </ng-template>
                                     </ngb-panel>
@@ -215,7 +216,7 @@
                         <div class="col-sm-8">
                             <div class="search-wrap">
                                 <input type="text" placeholder="חיפוש לפי מספר הזמנה" />
-                                <button><img src="assets/images/search-icon.svg" alt="" /></button>
+                                <button><img src="assets/images/search-icon.svg" alt="" /><img src="assets/images/search-icon-orange.svg" alt="" /></button>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -236,17 +237,8 @@
                                 <div class="row align-items-end">
                                     <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
-                                            <label>מיון לפי:</label>
-                                            <div class="custom-dropdown"
-                                                [ngClass]="{ 'dropdown-open' : isDropdownOpen}">
-                                                <span class="toggle-dropdown"
-                                                    (click)="isDropdownOpen = !isDropdownOpen">מס. הזמנה</span>
-                                                <ul class="dropdown-wrap">
-                                                    <li>כל ההזמנות</li>
-                                                    <li>סופקה</li>
-                                                    <li>טרם סופקה</li>
-                                                </ul>
-                                            </div>
+                                            <label>מיון לפי: </label>
+                                            <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'מס. הזמנה'"></iec-dropdown>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-5">
@@ -265,16 +257,7 @@
                                     <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <label>סינון לפי סטאטוס הזמנה:</label>
-                                            <div class="custom-dropdown"
-                                                [ngClass]="{ 'dropdown-open' : filterDropdownOpen}">
-                                                <span class="toggle-dropdown"
-                                                    (click)="filterDropdownOpen = !filterDropdownOpen">סופקה</span>
-                                                <ul class="dropdown-wrap">
-                                                    <li>כל ההזמנות</li>
-                                                    <li>סופקה</li>
-                                                    <li>טרם סופקה</li>
-                                                </ul>
-                                            </div>
+                                            <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
                                         </div>
                                     </div>
                                 </div>
@@ -283,10 +266,10 @@
                                         <div class="form-group">
                                             <label>סינון לפי תאריך הזמנה:</label>
                                             <div class="field-container">
-                                                <input class="field-input" placeholder="yyyy-mm-dd" name="dp"
+                                                <input class="field-input" placeholder="DD/MM/YYYY" name="dp"
                                                     [(ngModel)]="model" (click)="d.toggle()" ngbDatepicker
                                                     #d="ngbDatepicker">
-                                                <label class="field-placeholder" for="inputName">דוא״ל</label>
+                                                <label class="field-placeholder" for="inputName">מתאריך</label>
                                                 <span class="icon-left" (click)="d.toggle()" type="button"><img
                                                         src="assets/images/calendar.svg" alt="" /></span>
                                             </div>
@@ -295,10 +278,10 @@
                                     <div class="col-lg-5 col-md-6">
                                         <div class="form-group">
                                             <div class="field-container">
-                                                <input class="field-input" placeholder="yyyy-mm-dd" name="dp1"
+                                                <input class="field-input" placeholder="DD/MM/YYYY" name="dp1"
                                                     [(ngModel)]="model1" (click)="d1.toggle()" ngbDatepicker
                                                     #d1="ngbDatepicker">
-                                                <label class="field-placeholder" for="inputName1">דוא״ל</label>
+                                                <label class="field-placeholder" for="inputName1">עד תאריך</label>
                                                 <span class="icon-left" (click)="d1.toggle()" type="button"><img
                                                         src="assets/images/calendar.svg" alt="" /></span>
                                             </div>
@@ -318,3 +301,776 @@
         </div>
     </div>
 </div>
+
+
+<!-- order-details-modal-->
+<ng-template #orderDetailsModal>
+    <h4 class="modal-title-header text-center"> נתוני הזמנה מס. 4001105623 </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="order-information">
+            <div class="order-more">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> מצב הזמנה: </p>
+                            <p class="contant">סופקה</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> מטפל בהזמנה: </p>
+                            <p class="contant"> 31.12.22 </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> ערך הזמנה: </p>
+                            <p class="contant"> 019.56,7 </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> סוג מטבע: </p>
+                            <p class="contant"> USD </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> תנאי תשלום: </p>
+                            <p class="contant"> המאוחר בין קבלת טובין/שרות וקבלת חשבונית 45 ימים</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> מטפל בהזמנה: </p>
+                            <p class="contant text-orange"><a href=""> chaim matz</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="more-details">
+                            <p class="lable"> טלפון מטפל: </p>
+                            <p class="contant"> 076-6631144</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="items-order">
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel title="פריטים בהזמנה">
+                        <ng-template ngbPanelContent>
+                            <div class="tax-box-details">
+                                <div class="tax-title">
+                                    <h4>מס. שורה 0001</h4>
+                                </div>
+                                <div class="tax-details">
+                                    <div class="label-text">
+                                        <p>תיאור פריט </p>
+                                        <p>copper stranded conductor 16mm2 od+5 1mm </p>
+                                    </div>
+                                    <div>
+                                        <ul class="tax-full-details">
+                                            <li><label>כמות </label><span>333.00</span></li>
+                                            <li><label>יחידת מידה </label><span>M</span> </li>
+                                            <li><label>מחיר </label><span>8,181.30</span></li>
+                                            <li><label>מק״ט יצרן </label><span>-----</span></li>
+                                            <li><label>יצרן </label><span> 076</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tax-box-details">
+                                <div class="tax-title">
+                                    <h4>מס. שורה 0002</h4>
+                                </div>
+                                <div class="tax-details">
+                                    <div class="label-text">
+                                        <p>תיאור פריט </p>
+                                        <p>copper stranded conductor 16mm2 od+5 1mm </p>
+                                    </div>
+                                    <div>
+                                        <ul class="tax-full-details">
+                                            <li><label>כמות </label><span>333.00</span></li>
+                                            <li><label>יחידת מידה </label><span>M</span> </li>
+                                            <li><label>מחיר </label><span>8,181.30</span></li>
+                                            <li><label>מק״ט יצרן </label><span>-----</span></li>
+                                            <li><label>יצרן </label><span> 076</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="מצב אספקות ">
+                        <ng-template ngbPanelContent>
+                            <div class="tax-box-details">
+                                <div class="tax-title">
+                                    <h4>מס. שורה 0001</h4>
+                                </div>
+                                <div class="tax-details">
+                                    <div class="label-text">
+                                        <p>תיאור פריט </p>
+                                        <p>copper stranded conductor 16mm2 od+5 1mm </p>
+                                    </div>
+                                    <div>
+                                        <ul class="tax-full-details tex-box-sec">
+                                            <li><label>תאריך אספקה </label><span>15/15/2021</span></li>
+                                            <li><label> כמות מוזמנת </label><span>0.858</span> </li>
+                                            <li><label>יחמ״ד כמות </label><span>TO</span></li>
+                                            <li><label>יתרה לאספקה </label><span>0.00</span></li>
+                                            <li><label>ןרציל םגד .סמ </label><span> -</span></li>
+                                            <li><label>שם מטפל ברכש </label><span> <a href="">chaim matz</a></span></li>
+                                            <li><label>טלפון של מטפל </label><span> 076-8631144</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tax-box-details">
+                                <div class="tax-title">
+                                    <h4>מס. שורה 0002 <i class="bi bi-info-circle "></i></h4>
+                                </div>
+                                <div class="tax-details">
+                                    <div class="label-text">
+                                        <p>תיאור פריט </p>
+                                        <p>copper stranded conductor 16mm2 od+5 1mm </p>
+                                    </div>
+                                    <div>
+                                        <ul class="tax-full-details tex-box-sec">
+                                            <li><label class="text-red">תאריך אספקה </label><span
+                                                    class="text-red">15/15/2021</span></li>
+                                            <li><label> כמות מוזמנת </label><span>0.858</span> </li>
+                                            <li><label>יחמ״ד כמות </label><span>TO</span></li>
+                                            <li><label class="text-red">יתרה לאספקה </label><span
+                                                    class="text-red">0.00</span></li>
+                                            <li><label>ןרציל םגד .סמ </label><span> -</span></li>
+                                            <li><label>שם מטפל ברכש </label><span> <a href="">chaim matz</a></span></li>
+                                            <li><label>טלפון של מטפל </label><span> 076-8631144</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="אי התאמות בקבלה">
+                        <ng-template ngbPanelContent>
+                            <div class="order-details-nofound">
+                                <div class="no-data">
+                                    <img src="assets/images/product-img.png" alt="" />
+                                </div>
+                                <p> לא נמצאו אי התאמות בקבלה </p>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="ערבויות ובטחונות">
+                        <ng-template ngbPanelContent>
+                            <div class="order-details-nofound">
+                                <div class="no-data">
+                                    <img src="assets/images/product-img.png" alt="" />
+                                </div>
+                                <p> לא נמצאו אי התאמות בקבלה </p>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!-- order-Invoice-details-modal-->
+<ng-template #orderInvoiceModal>
+    <h4 class="modal-title-header text-center"> חשבונית מס. 8824.21.000246 </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="invoice-information">
+            <div class="invoice-full-details">
+                <ul>
+                    <li><label>תאריך:</label><span> 22/08/2021</span></li>
+                    <li><label>סכום:</label><span> 95,080.59</span></li>
+                    <li><label>מע״מ:</label><span> 16,163.70</span></li>
+                    <li><label>סה״כ:</label><span> 111,244.29</span></li>
+                    <li><label>מטפל בהזמנה:</label><span><a href="" class="text-o"> chaim matz</a></span></li>
+                    <li><label>טלפון מטפל:</label><span> 076-6631144</span></li>
+                </ul>
+            </div>
+            <div class="items-order-invoice">
+                <div>
+                    <div class="total-invoice">
+                        <p>סה״כ שורת חשבונית SAP : <span> 739,508.70</span> </p>
+                        <p>סה״כ שורת חשבונית ספק : <span> 739,508.70</span> </p>
+                    </div>
+                    <div class="invoice-info">
+                        <div class="invoice-title">
+                            <h4>הזמנה 4001087408 </h4>
+                            <a href=""> פרטי הזמנה <i class="bi bi-chevron-left"></i> </a>
+                        </div>
+                        <div class="invoice-data">
+                            <h4>שורת חשבונית SAP 00001</h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li class="invoice-line-sap"><label>תיאור פריט</label><span> copper stranded
+                                            conductor 16mm2 od+5 1mm</span>
+                                    </li>
+                                    <li><label>יחידת מידה</label><span>TO</span></li>
+                                    <li><label>כמות</label><span>0.423</span></li>
+                                    <li><label>סכום</label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                            <h4 class="rounded-0">שורת חשבונית ספק 000001 </h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li><label>כמות</label><span> 0.423</span>
+                                    </li>
+                                    <li><label>סכום </label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="invoice-data">
+                            <h4>שורת חשבונית SAP 00001</h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li class="invoice-line-sap"><label>תיאור פריט</label><span> copper stranded
+                                            conductor 16mm2 od+5 1mm</span>
+                                    </li>
+                                    <li><label>יחידת מידה</label><span>TO</span></li>
+                                    <li><label>כמות</label><span>0.423</span></li>
+                                    <li><label>סכום</label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                            <h4 class="rounded-0">שורת חשבונית ספק 000001 </h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li><label>כמות</label><span> 0.423</span>
+                                    </li>
+                                    <li><label>סכום </label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-info">
+                        <div class="invoice-title">
+                            <h4>הזמנה 4001087408 </h4>
+                            <a href=""> פרטי הזמנה <i class="bi bi-chevron-left"></i> </a>
+                        </div>
+                        <div class="invoice-data">
+                            <h4>שורת חשבונית SAP 00001</h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li class="invoice-line-sap"><label>תיאור פריט</label><span> copper stranded
+                                            conductor 16mm2 od+5 1mm</span>
+                                    </li>
+                                    <li><label>יחידת מידה</label><span>TO</span></li>
+                                    <li><label>כמות</label><span>0.423</span></li>
+                                    <li><label>סכום</label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                            <h4 class="rounded-0">שורת חשבונית ספק 000001 </h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li><label>כמות</label><span> 0.423</span>
+                                    </li>
+                                    <li><label>סכום </label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="invoice-data">
+                            <h4>שורת חשבונית SAP 00001</h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li class="invoice-line-sap"><label>תיאור פריט</label><span> copper stranded
+                                            conductor 16mm2 od+5 1mm</span>
+                                    </li>
+                                    <li><label>יחידת מידה</label><span>TO</span></li>
+                                    <li><label>כמות</label><span>0.423</span></li>
+                                    <li><label>סכום</label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                            <h4 class="rounded-0">שורת חשבונית ספק 000001 </h4>
+                            <div class="more-details-invoice">
+                                <ul>
+                                    <li><label>כמות</label><span> 0.423</span>
+                                    </li>
+                                    <li><label>סכום </label><span>5,828.26</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+
+<!-- order-Invoice-details-modal-->
+<ng-template #orderPaymentModal>
+    <h4 class="modal-title-header text-center"> תשלום מס. 3525085422 </h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <div class="invoice-information">
+            <div class="invoice-full-details">
+                <ul>
+                    <li><label>מתאריך:</label><span> 22/08/2021</span></li>
+                    <li><label>צורת תשלום:</label><span> מסב</span></li>
+                    <li><label>סניף בנק:</label><span> 867 </span></li>
+                    <li><label>קוד בנק:</label><span> 10</span></li>
+                    <li><label>חשבון בנק:</label><span> 71580087</span></li>
+                </ul>
+            </div>
+            <div class="items-order-invoice">
+                <div>
+                    <div class="">
+                        <h6>פריטי התשלום</h6>
+                    </div>
+                    <div class="invoice-info">
+                        <div class="invoice-title">
+                            <h4> מספר SAP 2016004819 </h4>
+                        </div>
+                        <div class="">
+                            fklh
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </app-modal>
+</ng-template>
+<!-- end -->
+
+<button (click)="securityCheckForm()" style="display: none;">Demo</button>
+
+<ng-template #securityCheckFormModal>
+  <h4 class="modal-title-header text-center" id="modal-basic-title">טופס בדיקת ביטחון</h4>
+  <app-modal (isCloseModal)="closeModalEvent($event)">
+    <div class="security-form">
+        <div class="check-form-step">
+            <ul>
+            <li>
+                <a href="" class="active">
+                <div class="step_dots">
+                    <span></span>
+                </div>
+                <label>
+                    מידע לנבדק
+                </label>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                <div class="step_dots">
+                    <span></span>
+                </div>
+                <label>
+                    שאלון אישי
+                </label>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                <div class="step_dots">
+                    <span></span>
+                </div>
+                <label>
+                    מידע פלילי
+                </label>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                <div class="step_dots">
+                    <span></span>
+                </div>
+                <label>ויתור סודיות</label>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                <div class="step_dots">
+                    <span></span>
+                </div>
+                <label>צירוף מסמכים</label>
+                </a>
+            </li>
+            </ul>
+        </div>
+        <div class="check-form-content" id="Step_1" style="display: none;">
+            <div class="check-form-comman-title">
+            <h2>מידע לנבדק</h2>
+            <p>נבדק/ת נכבד/ה</p>
+            <p>להלן מספר הנחיות לגבי מילוי הטפסים לבדיקה הביטחונית</p>
+            </div>
+            <div class="check-form-inner-content">
+                <div class="check-form-guidlines-card">
+                    <div class="check-form-guidlines-title">
+                    <label>:א. תהליך מילוי הטפסים כולל 5 שלבים</label>
+                    </div>
+                    <ul class="check-form-guidlines">
+                    <li>
+                    </li>
+                    <li>
+                        <p>קריאת העלון לנבדק</p>
+                    </li>
+                    <li>
+                        <p>מילוי שאלון אישי לצרכי קביעת התאמה </p>
+                        <p>ביטחונית למועמד / ת לרמה 5/6</p>
+                    </li>
+                    <li>
+                        <p>מילוי טופס הסכמה למסירת מידע</p>
+                        <p>מהמרשם הפלילי</p>
+                    </li>
+                    <li>
+                        <p>מילוי כתב ויתור על סודיות רפואית</p>
+                        <p>וסודיות המידע</p>
+                    </li>
+                    <li>
+                        <p>חפס + תוהז תדועת םולצת לש ףוריצ</p>
+                    </li>
+                    </ul>
+                    <div class="check-form-guidlines-title">
+                    <label>ב. בסיום כל שלב עליך לסמן אישור לפני</label>
+                    <label>המעבר לשלב הבא</label>
+                    </div>
+                    <div class="check-form-guidlines-title mb-0">
+                    <label>ג. בטופס זה יש לבחור את המועמד/ת מתוך</label>
+                    <label>רשימת ערכים המוצגת בלחיצה על שם מועמד</label>
+                    </div>
+                </div>
+                <div class="submit-form-content">
+                    <div class="form-title">
+                    <h3>בחירת מועמד/ת:</h3>
+                    </div>
+                    <div class="field-container">
+                    <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
+                    <label class="field-placeholder" for="inputName">דוא״ל</label>
+                    </div>
+                    <div class="field-container">
+                    <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
+                    <label class="field-placeholder" for="inputName">דוא״ל</label>
+                    </div>
+                    <div class="form-tearms">
+                        <div class="checkbox-group d-flex mb-0">
+                            <input type="checkbox" id="box1">
+                            <label for="box1"></label>
+                            <p class="contant label mb-0">סימון זה מאשר קריאה והבעת הסכמה לתנאים הרשומים כאן</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-action-area d-flex align-items-center justify-content-between">
+                    <button type="button" class="btn return-btn">חזור</button>
+                    <button type="button" class="btn btn-primary">המשך<i class="bi bi-chevron-left"></i> </button>
+                </div>
+            </div>
+        </div>
+        <div class="check-form-content second-form" id="Step_2" style="display: none;">
+            <div class="check-form-comman-title">
+            <h2>שאלון אישי</h2>
+            <p>שאלון לצרכי קביעת התאמה ביטחונית</p>
+            <p>למועמד/ת לרמה 5/6</p>
+            </div>
+            <div class="check-form-inner-content">
+            <div class="submit-form-content">
+                <div class="form-title">
+                <h3>שם בעברית</h3>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="שם פרטי">
+                <label class="field-placeholder" for="inputName">שם פרטי</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="קודם/נוסף">
+                <label class="field-placeholder" for="inputName">קודם/נוסף</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="שם משפחה">
+                <label class="field-placeholder" for="inputName">שם משפחה</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="קודם/נוסף">
+                <label class="field-placeholder" for="inputName">קודם/נוסף</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="*שם האב">
+                <label class="field-placeholder" for="inputName">*שם האב</label>
+                </div>
+            </div>
+            <div class="submit-form-content">
+                <div class="form-title">
+                <h3>שם בלועזית</h3>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="שם פרטי">
+                <label class="field-placeholder" for="inputName">שם פרטי</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="קודם/נוסף">
+                <label class="field-placeholder" for="inputName">קודם/נוסף</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="שם משפחה">
+                <label class="field-placeholder" for="inputName">שם משפחה</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="קודם/נוסף">
+                <label class="field-placeholder" for="inputName">קודם/נוסף</label>
+                </div>
+            </div>
+            <div class="submit-form-content">
+                <div class="form-title">
+                <h3>נתונים נוספים</h3>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="תעודת זהות">
+                <label class="field-placeholder" for="inputName">תעודת זהות</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="קודם/נוסף">
+                <label class="field-placeholder" for="inputName">קודם/נוסף</label>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="field-container">
+                <input class="field-input" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="model2" (click)="d2.toggle()"
+                    ngbDatepicker #d2="ngbDatepicker">
+                <label class="field-placeholder" for="inputName1">תאריך לידה</label>
+                <span class="icon-left" (click)="d2.toggle()" type="button"><img src="assets/images/calendar.svg"
+                    alt="" /></span>
+                </div>
+                <div class="field-container">
+                <input class="field-input" placeholder="yyyy-mm-dd" name="dp3" [(ngModel)]="model3" (click)="d3.toggle()"
+                    ngbDatepicker #d3="ngbDatepicker">
+                <label class="field-placeholder" for="inputName1">תאריך עליה</label>
+                <span class="icon-left" (click)="d3.toggle()" type="button"><img src="assets/images/calendar.svg"
+                    alt="" /></span>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="field-switch-container row mx-0 align-items-center">
+                <p class="switch-content">האם יש אזרחויות קודמות?</p>
+                <div class="toggle-switch">
+                    <span>לא</span>
+                    <label class="switch" for="checkbox2">
+                    <input type="checkbox" id="checkbox2" />
+                    <div class="slider round"></div>
+                    </label>
+                    <span>כן</span>
+                </div>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+            </div>
+            <div class="submit-form-content">
+                <div class="form-title">
+                <h3>כתובת</h3>
+                </div>
+                <div class="field-dropdwon-container">
+                    <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'סופקה'"></iec-dropdown>
+                </div>
+                <div class="row">
+                <div class="col-md-8">
+                    <div class="field-container">
+                    <input class="field-input" id="inputid" name="inputName" type="text" placeholder="רחוב">
+                    <label class="field-placeholder" for="inputName">רחוב</label>
+                    </div>
+                </div>
+                <div class="col-md-4 pr-0">
+                    <div class="field-container">
+                    <input class="field-input" id="inputid" name="inputName" type="text" placeholder="מס׳ בית/דירה">
+                    <label class="field-placeholder" for="inputName">מס׳ בית/דירה</label>
+                    </div>
+                </div>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="מיקוד">
+                <label class="field-placeholder" for="inputName">מיקוד</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="מס׳ טלפון">
+                <label class="field-placeholder" for="inputName">מס׳ טלפון</label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="מס׳ טלפון נייד">
+                <label class="field-placeholder" for="inputName">מס׳ טלפון נייד</label>
+                </div>
+                <div class="field-switch-container row mx-0 align-items-center">
+                <p class="switch-content">האם יש אזרחויות קודמות?</p>
+                <div class="toggle-switch">
+                    <span>לא</span>
+                    <label class="switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                    </label>
+                    <span>כן</span>
+                </div>
+                </div>
+            </div>
+            <div class="submit-form-content">
+                <div class="form-title">
+                <h3>דואר אלקטרוני</h3>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דואר אלקטרוני* ">
+                <label class="field-placeholder" for="inputName">דואר אלקטרוני* </label>
+                </div>
+                <div class="field-container">
+                <input class="field-input" id="inputid" name="inputName" type="text" placeholder="כתובת אתר אישי">
+                <label class="field-placeholder" for="inputName">כתובת אתר אישי</label>
+                </div>
+                <div class="form-tearms">
+                <div class="checkbox-group d-flex mb-0">
+                    <input type="checkbox" id="lastBox">
+                    <label for="lastBox"></label>
+                    <p class="contant label mb-0">הנני מאשר/ת את נכונות הפרטים שמילאתי</p>
+                </div>
+                </div>
+            </div>
+            <div class="form-action-area d-flex align-items-center justify-content-between">
+                <button type="button" class="btn return-btn">חזור</button>
+                <button type="button" class="btn btn-primary">המשך<i class="bi bi-chevron-left"></i> </button>
+            </div>
+            </div>
+        </div>
+        <div class="check-form-content second-form" id="Step_3" style="display: none;">
+            <div class="check-form-comman-title">
+            <h2>מידע פלילי</h2>
+            <p>הסכמה למסירת מידע מהמרשם הפלילי ע״פ חוק המרשם</p>
+            <p>הפלילי ותקנות השבים, תשמ״א 1981</p>
+            </div>
+            <div class="check-form-inner-content">
+                <div class="check-form-guidlines-card">
+                    <h5 class="mb-3"><b>נבדק/ת נכבד/ה<br/> אנא קרא את הכתוב להלן וחתום <br/>בתחתית הטופס:</b></h5>
+                    <p>אני החתום/מה מטה: משפחהבדק פרטיבדק מס' זהות: 111111118 מועמד/ת לעבודה / מועסק/ת בחברת החשמל , מצהיר/ה בזאת שידוע לי כי לצורך קבלתי לעבודה ו/או המשך העסקתי עלי לעבור בדיקה ביטחונית.</p>
+                    <p>הואיל וכך, הנני נותן/ת בזאת הסכמתי מראש, על פי סעיף 12ב )3( לחוק המרשם הפלילי ותקנות השבים תשמ"א 1981, כי יימסר לנציגכם המוסמך כל מידע המצוי אודותיי במרשם הפלילי כמשמעותו בחוק זה.</p>
+                    <p>כמו-כן, ולמען הסר ספק, הנני מוותר/ת בזאת מראש על קבלת הודעה בדבר מסירת המידע.</p>
+                    <p>כתב זה יעמוד בתוקפו בתהליכי בדיקת התאמתי לעבודה במסגרתכם ואם אתקבל לעבודה, וכל עוד אהיה מועסק/ת בתפקיד המסווג.</p>
+                </div>
+                <div class="form-tearms">
+                    <div class="checkbox-group d-flex mb-0">
+                        <input type="checkbox" id="box2">
+                        <label for="box2"></label>
+                        <p class="contant label mb-0">הנני מאשר/ת שקראתי והבנתי את תוכנו</p>
+                    </div>
+                </div>
+                <div class="form-action-area d-flex align-items-center justify-content-between">
+                    <button type="button" class="btn return-btn">חזור</button>
+                    <button type="button" class="btn btn-primary">המשך<i class="bi bi-chevron-left"></i> </button>
+                </div>
+            </div>
+        </div>
+        <div class="check-form-content second-form" id="Step_4" style="display: none;">
+            <div class="check-form-comman-title">
+                <h2>ויתור סודיות</h2>
+                <p>כתב ויתור על סודיות רפואית וסודיות המידע</p>
+                <p class="small">המסמך מיועד לנשים וגברים כאחד למרות היותו מנוסח בלשון זכר</p>
+            </div>
+            <div class="check-form-inner-content">
+                <div class="check-form-guidlines-card">
+                    <h5><b>נבדק/ת נכבד/ה <br/>אנא קרא את הכתוב להלן וחתום <br/> בתחתית הטופס:</b></h5>
+                    <p>אני הח"מ: משפחהבדק פרטיבדק <br/> מס' זהות 111111118:, שנת לידה: 1997, ארץ לידה:<br/> ישראל, שנת עליה: <br/> שם קודם: אין <br/> שם האב: יעקב <br/> לאחר שקראתי והבנתי את תוכנו של מסמך זה, נותן בזאת רשות לכל רופא, או עובד רפואי, או מוסד רפואי, או פסיכולוג, או יועץ העובד במוסד רפואי או במוסד ציבורי אחר, למסור למבקש מטעם רשות ביטחון כהגדרתה בחוק הגנת הפרטיות תשמ"א – 1981 )להלן "רשות הביטחון"( את כל הפרטים ללא יוצא מן הכלל ובאופן שידרוש המבקש על מצב בריאותי וכל ממצא רפואי לרבות מצב נפשי, שיקומי, תפקודי, או על כל מחלה שחליתי בה בעבר או שאני חולה בה כעת.</p>
+                    <p>כך גם מאשר בזאת לכל יועץ חינוכי ו/או יועץ אחר בעניינים אישיים, ו/או עובד סוציאלי )לפי חוק העובדים הסוציאליים התשנ"ו 1996(, המועסק בין במסגרת פרטית ובין במסגרת רשות מקומית ו/או כל מוסד ציבורי, חינוכי או פרטי, למסור למבקש מטעם רשות הביטחון את כל הפרטים ללא יוצא מן הכלל ובאופן שידרוש המבקש על מצבי הבריאותי )לרבות מצב נפשי( ו/או הסוציאלי ו/או השיקומי.</p>
+                    <p>אני משחרר בזה כל רופא או יועץ או עובד רפואי אחר, כל מוסד לרבות קופת חולים, בתי חולים כלליים או פסיכיאטריים או שיקומים או כל סניף מהמוסדות לעיל או פסיכולוג, או משרד הבריאות, לרבות המחלקה למידע והערבה בשירותי בריאות הנפש, מחובת שמירה על סודיות רפואית שחלה עליו על פי כל דין או אתיקה מקצועית כלפי רשות הביטחון ו/או כל אדם הפועל מטעמה או בשליחותה, וכל אחד מהנימנים לעיל מחובת שמירה על סודיות עפ"י החוקים שהוזכרו בכתב זה, ולא תהיה לי כל טענה או תביעה מסוג כלשהו בקשר למסירת מידע כאמור.</p>
+                    <p>כוחו של כתב ויתור על סודיות זה יפה גם לגבי חומר רפואי המצוי אודותיי אצל גופים ציבוריים או ממלכתיים אחרים. כתב זה יעמוד בתוקפו בהליכי בדיקות התאמתי לתפקיד אליו אני מועמד וכל עוד אשאר בתפקיד מסווג.</p>
+                </div>
+                <div class="form-tearms">
+                    <div class="checkbox-group d-flex mb-0">
+                        <input type="checkbox" id="box3">
+                        <label for="box3"></label>
+                        <p class="contant label mb-0">הנני מאשר/ת שקראתי והבנתי את תוכנו של מסמך זה.</p>
+                    </div>
+                </div>
+                <div class="form-action-area d-flex align-items-center justify-content-between">
+                    <button type="button" class="btn return-btn">חזור</button>
+                    <button type="button" class="btn btn-primary">המשך<i class="bi bi-chevron-left"></i> </button>
+                </div>
+            </div>
+        </div>
+        <div class="check-form-content second-form" id="Step_5" style="display: block;">
+            <div class="check-form-comman-title">
+                <h2>צירוף מסמכים</h2>
+                <p>נבדק/ת נכבד/ה</p>
+                <p>להשלמת המידע יש לצרף את המסמכים הבאים:</p>
+            </div>
+            <div class="check-form-inner-content">
+                <div class="file-upload">
+                    <input type="file" id="photoID" />
+                    <label for="photoID"><img class="ml-2" src="assets/images/plus.svg" alt=""/><span>צילום תעודת הזהות שלך</span></label>
+                </div>
+                <div class="file-upload mt-2">
+                    <input type="file" id="photoID2" />
+                    <label for="photoID2"><img class="ml-2" src="assets/images/plus.svg" alt=""/><span>צילום ספח תעודת הזהות שלך</span></label>
+                </div>
+                <div class="file-upload-warning">
+                    <p>ש להקפיד שכל הספח יופיע בדף, התמונה תהיה ברורה והפרטים הכתובים יהיו ניתנים לקריאה יתקבלו מסמכים בקבצים מהסוגים הבאים   בלבד: jpg ,  jpeg <br/> משקל קובץ מירבי מותר לקובץ בודד הינו .MB1</p>
+                    <img src="assets/images/warning-icon.svg" alt=""/>
+                </div>
+                <div class="submit-form-content mt-5">
+                    <div class="form-title">
+                        <h3>חתימה ידנית</h3>
+                        <p>צייר/י חתימתך באמצעות העכבר בתוך המלבן.</p>
+                    </div>
+                </div>
+                <div class="submit-form-content mt-5">
+                    <div class="form-title">
+                        <h3>סיום ושליחה</h3>
+                    </div>
+                    <div class="field-container">
+                        <input class="field-input" name="inputName" type="text" placeholder="שם פרטי">
+                        <label class="field-placeholder">שם פרטי</label>
+                    </div>
+                    <div class="field-container">
+                        <input class="field-input" name="inputName" type="text" placeholder="שם משפחה">
+                        <label class="field-placeholder">שם משפחה</label>
+                    </div>
+                    <div class="field-container">
+                        <input class="field-input" name="inputName" type="text" placeholder="תעודת זהות">
+                        <label class="field-placeholder">תעודת זהות</label>
+                    </div>
+                    <div class="field-container">
+                        <input class="field-input" placeholder="DD/MM/YYYY" name="dp4"
+                            [(ngModel)]="model4" (click)="d4.toggle()" ngbDatepicker
+                            #d4="ngbDatepicker">
+                        <label class="field-placeholder" for="inputName">תאריך חתימה</label>
+                        <span class="icon-left" (click)="d4.toggle()" type="button"><img
+                                src="assets/images/calendar.svg" alt="" /></span>
+                    </div>
+                </div>
+                <div class="form-tearms">
+                    <div class="checkbox-group d-flex mb-0">
+                        <input type="checkbox" id="box4">
+                        <label for="box4"></label>
+                        <p class="contant label mb-0">הנני מאשר/ת שקראתי והבנתי את תוכנו <br/>של מסמך זה.</p>
+                    </div>
+                </div>
+                <div class="form-action-area d-flex align-items-center justify-content-between">
+                    <button type="button" class="btn return-btn">חזור</button>
+                    <button type="button" class="btn btn-primary" (click)="successForm()">המשך<i class="bi bi-chevron-left"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </app-modal>
+</ng-template>
+
+<ng-template #successFormModal>
+    <h4 class="modal-title-header text-center" id="modal-basic-title"></h4>
+    <app-modal (isCloseModal)="closeModalEvent($event)">
+        <img src="assets/images/success-icon.svg" alt=""/>
+        <h5 class="success-title">הטפסים נשלחו בהצלחה!</h5>
+        <div class="success-sub-title">
+            <p>מר/גב' מוטה גור הנכבד/ה,</p>
+            <p>פרטיך התקבלו במערכת ונמצאים בבדיקה.</p>
+        </div>
+        <p>לאחר אישור תקינות יישלח אליך דואר</p>
+        <p> אלקטרוני לפי הכתובת שמסרת בטופס הרישום.</p>
+        <button class="btn btn-primary mt-4">חזרה לטפסים</button>
+    </app-modal>
+  </ng-template> 

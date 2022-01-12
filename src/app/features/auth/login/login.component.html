@@ -10,37 +10,41 @@
                         אין לך חשבון? <a href="signup">לחץ להרשמה </a>
                     </p>
                 </div>
-                <div>
-                    <div class="input-group">
+                <form [formGroup]="loginForm">
+                    <div class="input-group" [ngClass]="{'error': loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || isInvalidForm)}">
                         <div class="w-100">
                             <div class="field-container">
-                                <input class="field-input" id="inputid" name="inputName" type="text"
-                                    placeholder="דוא״ל">
+                                <input class="field-input" id="emnail" name="inputName" type="text"
+                                    placeholder="דוא״ל" formControlName="email">
                                 <label class="field-placeholder" for="inputName">דוא״ל</label>
                             </div>
                         </div>
+                        <div class="error-message" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || isInvalidForm)">
+                            <img class="ml-2" src="assets/images/info-icon-red.svg" alt=""/><span>הודעת שגיאה</span></div>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group" [ngClass]="{'error' :loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || isInvalidForm)}">
                         <div class="w-100">
                             <div class="field-container">
-                                <input class="field-input" id="inputid" name="inputName" type="password"
-                                    placeholder="סיסמה" autofocus="none">
-                                <label class="field-placeholder" for="inputName">סיסמה</label>
+                                <input class="field-input" id="password" name="password" type="password"
+                                    placeholder="סיסמה" formControlName="password">
+                                <label class="field-placeholder" for="password">סיסמה</label>
                             </div>
                         </div>
+                        <div class="error-message"  *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || isInvalidForm)">
+                            <img class="ml-2" src="assets/images/info-icon-red.svg" alt=""/><span>הודעת שגיאה</span></div>
                     </div>
                     <p class="text-left forgot-p" (click)="openPopup()">
                         שכחתי סיסמא
                     </p>
-                </div>
-                <div class="text-center mt-5">
-                    <button type="button" class="btn btn-primary">כניסה</button>
-                </div>
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn btn-primary" (click)="loginFormSubmit()">כניסה</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <p class="text-center">
-        לא מצליח להתחבר? <span class="modal-open" (click)="contactPopup()"> לחץ כאן</span>
+        לא מצליח להתחבר? <span class="open-modal-popup" (click)="contactPopup()"> לחץ כאן</span>
     </p>
 </div>
 
@@ -75,7 +79,7 @@
             <p>שלחנו לך הודעה לכתובת המייל</p>
             <p class="weight-700">email@gmail.com</p>
             <p>לחידוש הסיסמה יש להיכנס לקישור</p>
-            <p class="mt-5"> לא קיבלתי <span class="modal-open" (click)="sendSgainPopup()"> שלחו שוב </span> </p>
+            <p class="mt-5"> לא קיבלתי <span class="open-modal-popup" (click)="sendSgainPopup()"> שלחו שוב </span> </p>
             <div class="text-center mt-5">
                 <button type="button" class="btn btn-primary">חזרה לעמוד הבית</button>
             </div>

@@ -1,0 +1,6 @@
+<div ngbDropdown class="custom-dropdown" [ngClass]="{'show' : isDropdownOpen}">
+    <span class="toggle-dropdown" ngbDropdownToggle>{{ selectedValue }}</span>
+    <ul ngbDropdownMenu class="dropdown-wrap" [ngClass]="{'show' : isDropdownOpen}">
+        <li class="dropdown-item" *ngFor="let item of lists" [ngClass]="{'selected': item === selectedValue}" (click)="onSelect(item)">{{ item }}</li>
+    </ul>
+  </div>
