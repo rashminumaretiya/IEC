@@ -28,10 +28,10 @@
           </div>
           <ul class="navbar-nav mr-auto ml-xl-4 ml-sm-3">
             <li class="nav-item d-md-none d-block">
-              <a class="nav-link active" aria-current="page" href="alert">דף הבית/הזמנות</a>
+              <a class="nav-link" aria-current="page" href="home">דף הבית/הזמנות</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="alert">התראות</a>
+              <a class="nav-link" aria-current="page" href="alert" (click)="goToPage('alert')" [ngClass]="{'active': currentSelectedSidebarTab.includes('alert')}">התראות</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">נהלים ותמיכה טכנית</a>
@@ -57,7 +57,7 @@
                     <p>מס. ספק 1234567</p>
                 </div>
             </div>
-            <button ngbDropdownItem><img src="assets/images/logout.svg"> <span>התנתקות </span></button>
+            <button ngbDropdownItem (click)="goLogin()"><img src="assets/images/logout.svg"> <span>התנתקות </span></button>
           </div>
         </div>
       </ng-container>

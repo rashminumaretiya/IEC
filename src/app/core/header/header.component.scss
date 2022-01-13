@@ -79,11 +79,23 @@ header {
             }
             .nav-link {
                 padding: 10px 20px;
-                color: #fff;                    
+                color: #fff;    
+                position: relative;                
                 @media screen and (max-width: 767px) {
                     color: #27303C;   
                     border-bottom: 1px solid #EBEEF2;    
                     padding: 15px 20px;             
+                }
+                &.active {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        bottom: -22px;
+                        height: 3px;
+                        background-color: #fff;
+                        left: 20px;
+                        right: 20px;
+                    }
                 }
             }
         }

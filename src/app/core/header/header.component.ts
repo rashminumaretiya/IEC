@@ -13,6 +13,7 @@ import {
 export class HeaderComponent implements OnInit {
   public isSignupOrLoginPage = true;
 
+  public currentSelectedSidebarTab = 'alert';
   constructor(
     private router: Router
   ) {
@@ -28,8 +29,20 @@ export class HeaderComponent implements OnInit {
         }
       }
     });
-  }
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentSelectedSidebarTab = event.url.replace( "" , "");
+      }
+    });
 
+  }
+  public goToPage(endPoint: any) {
+    this.currentSelectedSidebarTab = endPoint;
+    this.router.navigate(['alert', endPoint])
+  }
+  public goLogin() {
+    this.router.navigate(['login'])
+  }
   ngOnInit(): void {
     window.addEventListener('scroll', this.scroll, true);
   }
