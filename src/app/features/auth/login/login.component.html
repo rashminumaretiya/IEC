@@ -81,7 +81,7 @@
             <p>לחידוש הסיסמה יש להיכנס לקישור</p>
             <p class="mt-5"> לא קיבלתי <span class="open-modal-popup mr-1" (click)="sendSgainPopup()"> שלחו שוב </span> </p>
             <div class="text-center mt-5">
-                <button type="button" class="btn btn-primary">חזרה לעמוד הבית</button>
+                <button type="button" (click)="closeModalEvent($event)" class="btn btn-primary">חזרה לעמוד הבית</button>
             </div>
         </div>
     </app-modal>
@@ -145,7 +145,7 @@
             <p class="tatle"> סליחה, משהו השתבש</p>
             <p class="sub-title weight-700">יש לנסות מאוחר יותרלא הצלחנו לחדש את סיסמתך,</p>
             <div class="text-center mt-5">
-                <button type="button" class="btn btn-primary"> חזרה לעמוד הבית</button>
+                <button type="button" (click)="closeModalEvent($event)" class="btn btn-primary"> חזרה לעמוד הבית</button>
             </div>
         </div>
     </app-modal>
