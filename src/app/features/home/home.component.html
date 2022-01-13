@@ -384,7 +384,7 @@
                                             <li><label>יחידת מידה </label><span>M</span> </li>
                                             <li><label>מחיר </label><span>8,181.30</span></li>
                                             <li><label>מק״ט יצרן </label><span>-----</span></li>
-                                            <li><label>יצרן </label><span> 076</span></li>
+                                            <li><label>יצרן </label><span> </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -404,7 +404,7 @@
                                             <li><label>יחידת מידה </label><span>M</span> </li>
                                             <li><label>מחיר </label><span>8,181.30</span></li>
                                             <li><label>מק״ט יצרן </label><span>-----</span></li>
-                                            <li><label>יצרן </label><span> 076</span></li>
+                                            <li><label>יצרן </label><span> </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -486,6 +486,7 @@
         </div>
     </app-modal>
 </ng-template>
+<!--modal end -->
 
 <!-- order-Invoice-details-modal-->
 <ng-template #orderInvoiceModal>
@@ -657,6 +658,7 @@
         </div>
     </app-modal>
 </ng-template>
+<!--modal end -->
 
 <!-- order-Payment-details-modal-->
 <ng-template #orderPaymentModal>
@@ -715,7 +717,7 @@
                         <div class="payment-box-details">
                             <div>
                                 <ul class="order-full-details">
-                                    <li><label>מספר חשבונית </label><a href="#">P8824.21.000255</a></li>
+                                    <li><label>מספר חשבונית </label> <span><a href="#">P8824.21.000255</a></span></li>
                                     <li><label>תאריך חשבונית </label><span>22/08/2021</span></li>
                                     <li><label>נתקבל בחח״י </label><span>09/09/2021 </span></li>
                                 </ul>
@@ -732,7 +734,7 @@
         </div>
     </app-modal>
 </ng-template>
-<!-- end -->
+<!--modal end -->
 
 <button (click)="securityCheckForm()" class="d-none">security Form</button>
 
@@ -837,12 +839,12 @@
                             <h3>בחירת מועמד/ת:</h3>
                         </div>
                         <div class="field-container">
-                            <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
-                            <label class="field-placeholder" for="inputName">דוא״ל</label>
+                            <input class="field-input" id="inputid" name="inputName" type="text" placeholder="שם המועמד/ת">
+                            <label class="field-placeholder" for="inputName">שם המועמד/ת</label>
                         </div>
                         <div class="field-container">
-                            <input class="field-input" id="inputid" name="inputName" type="text" placeholder="דוא״ל">
-                            <label class="field-placeholder" for="inputName">דוא״ל</label>
+                            <input class="field-input" id="inputid" name="inputName" type="text" placeholder="תעודת זהות">
+                            <label class="field-placeholder" for="inputName">תעודת זהות</label>
                         </div>
                         <div class="form-tearms">
                             <div class="checkbox-group d-flex mb-0">
