@@ -4,5 +4,7 @@ export const ROUTES = {
     },
     
     HOME: 'home',
+
+    ALERT: 'alert'
     
 };

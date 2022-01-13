@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren:() =>  import('./features/home/home.module').then((m)=> m.HomeModule)
   },
   {
+    path: ROUTES.ALERT,
+    loadChildren:() =>  import('./features/alert/alert.module').then((m)=> m.AlertModule)
+  },
+  {
     path: '',
     loadChildren:() =>  import('./features/auth/auth.module').then((m)=> m.AuthModule)
   },

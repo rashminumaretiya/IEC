@@ -1,0 +1,93 @@
+.alert-box {
+    border: 1px solid #DCE7FF;
+    box-shadow: 0px 2px 8px rgb(27 58 130 / 10%);
+    background-color: #fff;
+    border-radius: 23px;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    font-size: 14px;
+    color: #27303C;
+    min-height: 75px;
+    margin-top: 20px;
+    @media screen and (max-width: 767px) {
+        border-radius: 10px;
+    }
+    .order-text {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        padding: 8px 30px 8px 40px;
+        background: linear-gradient(147.53deg, rgba(220, 231, 255, 0.7) -4.61%, rgba(144, 178, 252, 0.7) 96.72%);
+        position: relative;
+        border-radius: 0 23px 23px 0;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            padding: 8px 15px 8px 15px;
+        }
+        &:before {
+            content: "";
+            background-image: url('../../../assets/images/shape1.png');
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 49px;
+            background-size: cover;
+            @media screen and (max-width: 767px) {
+                background-image: none;
+            }
+        }
+        h5 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            @media screen and (max-width: 767px) {
+                font-size: 16px;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                white-space: normal;
+            }
+            span {
+                margin-right: 10px;
+                &.text-red {
+                    color: #C24D08 !important
+                }
+            }
+        }
+    }
+    .alert-desc {
+        width: 30%;
+        padding: 15px 20px;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+        label {
+            font-size: 12px;
+            margin-bottom: 0;
+            color: #566C86;
+            font-weight: 400;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .oreder-detail {
+        width: 20%;
+        align-items: flex-end;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+    }
+}

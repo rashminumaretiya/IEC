@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert-wrap mb-1">
+                    <h5>תוארתה</h5>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <iec-dropdown [lists]="['כל ההזמנות','סופקה','טרם סופקה']" [selectedValue]="'כל ההתראות'"></iec-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert-box" *ngFor="let data of [1,2,3,4,5,6]">
+                    <div class="order-text">
+                        <h5>מס. הזמנה 4001105623 <span class="text-red">הקפסא ינפל םימי 3 דע</span></h5>
+                    </div>
+                    <div class="alert-desc">
+                        <label>תיאור התראה</label>
+                        <p>הדגם שהתקבל אינו מתאים</p>
+                    </div>
+                    <div class="oreder-detail">
+                        <a href="#">פרטי הזמנה <i class="bi bi-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

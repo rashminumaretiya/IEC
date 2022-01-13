@@ -145,6 +145,14 @@ header {
                         display: inline-block;
                         color: #FFD492;
                     }
+                    @media screen and (max-width: 767px) {
+                        background-image: url('../../../assets/images/close-icon-white.svg');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        img {
+                            opacity: 0;
+                        }
+                    }
                 }
                 &:focus {
                     box-shadow: none;
@@ -162,6 +170,21 @@ header {
                 padding: 2px 15px 15px;
                 top: -2px;
                 left: -2px;
+                @media screen and (max-width: 767px) {
+                    top: 100%;
+                    margin-top: 20px;
+                    left: -5px;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: -5px;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #3655ce;
+                        transform: rotate(45deg);
+                        left: 16px;
+                    }
+                }
                 .user-info {
                     display: flex;
                     align-items: center;

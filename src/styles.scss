@@ -63,7 +63,12 @@ label {
 .text-red {
   color: #D50B0F !important;
 }
-
+.text-dark-black {
+  color: #27303C !important;
+}
+.text-dark-blue {
+  color: #0D204C !important;
+}
 .container-xl,
 .container-lg,
 .container-md,
@@ -73,27 +78,32 @@ label {
     max-width: 940px;
   }
 }
-.btn-primary {
-  background: radial-gradient(
-    280% 280% at 50.27% -99%,
-    #ffc264 0.03%,
-    #f47216 100%
-  );
-  box-shadow: 0px 4px 20px rgba(177, 86, 21, 0.25);
-  border-radius: 40px;
-  align-items: center;
-  padding: 16px 45px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-  border: none;
-  line-height: normal;
-}
-.btn-red {
-  background-color: transparent;
-  color: #c94d08;
-  font-weight: 700;
-  padding: 16px 45px;
+.btn {
+  &:focus {
+    box-shadow: none !important;
+  }
+  &.btn-primary {
+    background: radial-gradient(
+      280% 280% at 50.27% -99%,
+      #ffc264 0.03%,
+      #f47216 100%
+    );
+    box-shadow: 0px 4px 20px rgba(177, 86, 21, 0.25);
+    border-radius: 40px;
+    align-items: center;
+    padding: 16px 45px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    border: none;
+    line-height: normal;
+  }
+  &.btn-red {
+    background-color: transparent;
+    color: #c94d08;
+    font-weight: 700;
+    padding: 16px 45px;
+  }
 }
 .input-group {
   margin: 15px 0;
