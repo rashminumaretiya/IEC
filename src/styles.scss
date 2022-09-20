@@ -32,6 +32,9 @@ body[dir="rtl"] * {
 ul {
   padding: 0;
 }
+img {
+  max-width: 100%;
+}
 .main-content {
   padding: 90px 0;
   overflow: hidden;
@@ -69,10 +72,6 @@ label {
 .text-dark-blue {
   color: #0D204C !important;
 }
-.container-xl,
-.container-lg,
-.container-md,
-.container-sm,
 .container {
   @media (min-width: 1200px) {
     max-width: 940px;
